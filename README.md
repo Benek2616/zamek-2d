@@ -1,16 +1,17 @@
-# 🏰 Zamek 2D – duża mapa
+# 🏡 Eldoria – Przygoda
 
-Przygodówka 2D na telefon z rozbudowanym zamkiem.
+Kolorowa przygodówka 2D w miasteczku fantasy.
 
-## Co jest w grze
-- Duża mapa (kilka sal + lochy + wielka sala)
-- Pochodnie, regały, stoły, beczki, posągi, banery, tron, okna
-- Klucz, latarnia, amulet
-- Joystick + przycisk AKCJA
+## Fabuła
+Ktoś ukradł magiczny amulet Starszego. Porozmawiaj z mieszkańcami, znajdź klucz przy studni, otwórz piwnicę i odzyskaj amulet.
+
+## Postacie
+- Piekarz Marek
+- Strażnik Olek
+- Starszy Tomasz
+- Mała Ania
 
 ## Zagraj
 https://htmlpreview.github.io/?https://github.com/Benek2616/zamek-2d/blob/main/index.html
 
 https://raw.githack.com/Benek2616/zamek-2d/main/index.html
-
-Repo: https://github.com/Benek2616/zamek-2d
