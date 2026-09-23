@@ -4,41 +4,39 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Eldoria – Przygoda</title>
+<title>Eldoria</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;touch-action:none;user-select:none}
-html,body{width:100%;height:100%;overflow:hidden;background:#1a1520;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#eee}
-#wrapper{width:100%;height:100%;max-width:540px;margin:0 auto;position:relative;display:flex;flex-direction:column;background:#1e1830}
-#ui-top{flex-shrink:0;background:linear-gradient(180deg,#2a2240,#1a1528);padding:8px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #c45c2a;z-index:10}
-#ui-top h1{font-size:14px;font-weight:700;color:#f0d080}
-#inventory{font-size:11px;background:rgba(0,0,0,.5);padding:4px 10px;border-radius:14px;max-width:55%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#message{position:absolute;top:46px;left:50%;transform:translateX(-50%);background:rgba(20,15,30,.95);color:#fff;padding:10px 16px;border-radius:12px;font-size:13px;max-width:92%;text-align:center;z-index:40;display:none;pointer-events:none;border:1px solid rgba(196,92,42,.5);box-shadow:0 6px 20px rgba(0,0,0,.5);line-height:1.4}
-#dialog{position:absolute;bottom:140px;left:10px;right:10px;background:rgba(15,12,25,.96);border:2px solid #c45c2a;border-radius:14px;padding:14px;z-index:50;display:none;box-shadow:0 8px 30px rgba(0,0,0,.6)}
-#dialog .name{color:#f0d080;font-weight:700;font-size:13px;margin-bottom:6px}
-#dialog .text{font-size:14px;line-height:1.45;margin-bottom:10px}
-#dialog .opts{display:flex;flex-direction:column;gap:6px}
-#dialog button{background:#3a2a50;color:#eee;border:none;padding:10px 12px;border-radius:10px;font-size:13px;text-align:left;cursor:pointer}
-#dialog button:active{background:#c45c2a}
-#game{flex:1;width:100%;display:block;background:#3a5a3a}
-#controls{flex-shrink:0;background:linear-gradient(0deg,#1a1520,#221c35);padding:8px 14px 16px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #2a2240;min-height:128px}
-#joystick-zone{width:116px;height:116px;position:relative}
-#joystick-base{width:106px;height:106px;border-radius:50%;background:rgba(40,35,60,.85);border:3px solid rgba(100,90,140,.4);position:absolute;top:5px;left:5px;box-shadow:inset 0 0 18px rgba(0,0,0,.4)}
-#joystick-knob{width:46px;height:46px;border-radius:50%;background:linear-gradient(145deg,#e07040,#c04520);border:3px solid rgba(255,255,255,.15);position:absolute;top:35px;left:35px;box-shadow:0 4px 12px rgba(224,112,64,.4)}
-#actionBtn{width:72px;height:72px;border-radius:50%;border:none;background:linear-gradient(145deg,#f0c414,#d4880e);color:#1a1000;font-size:12px;font-weight:800;box-shadow:0 5px 0 #a36b00,0 8px 18px rgba(240,196,15,.3)}
-#actionBtn:active{transform:translateY(3px);box-shadow:0 2px 0 #a36b00}
-#actionBtn.near{animation:pulse 1s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 5px 0 #a36b00,0 8px 18px rgba(240,196,15,.3)}50%{box-shadow:0 5px 0 #a36b00,0 8px 26px rgba(240,196,15,.7)}}
-#startScreen,#winScreen{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,#2a1e40 0%,#0e0a18 70%);display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:100;padding:20px;text-align:center}
+html,body{width:100%;height:100%;overflow:hidden;background:#1a1428;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#eee}
+#wrapper{width:100%;height:100%;max-width:480px;margin:0 auto;position:relative;display:flex;flex-direction:column;background:#1e1830}
+#ui-top{flex-shrink:0;background:#2a2038;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #c45c28;z-index:10}
+#ui-top h1{font-size:14px;font-weight:700;color:#f0c860}
+#inventory{font-size:11px;background:#0008;padding:4px 10px;border-radius:12px;max-width:55%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#message{position:absolute;top:46px;left:50%;transform:translateX(-50%);background:#1a1428ee;color:#fff;padding:10px 14px;border-radius:10px;font-size:13px;max-width:90%;text-align:center;z-index:40;display:none;border:2px solid #c45c28;line-height:1.4}
+#dialog{position:absolute;bottom:135px;left:8px;right:8px;background:#1a1428f5;border:3px solid #c45c28;border-radius:12px;padding:12px;z-index:50;display:none}
+#dialog .name{color:#f0c860;font-weight:700;font-size:13px;margin-bottom:6px}
+#dialog .text{font-size:14px;line-height:1.4;margin-bottom:10px}
+#dialog .opts button{display:block;width:100%;background:#3a2a50;color:#eee;border:none;padding:10px;border-radius:8px;font-size:13px;text-align:left;margin-top:4px}
+#dialog .opts button:active{background:#c45c28}
+#game{flex:1;width:100%;display:block;image-rendering:pixelated;background:#3a6b3a}
+#controls{flex-shrink:0;background:#221c30;padding:8px 12px 14px;display:flex;justify-content:space-between;align-items:center;border-top:2px solid #2a2038;min-height:120px}
+#joystick-zone{width:110px;height:110px;position:relative}
+#joystick-base{width:100px;height:100px;border-radius:50%;background:#2a2438;border:3px solid #4a4060;position:absolute;top:5px;left:5px}
+#joystick-knob{width:44px;height:44px;border-radius:50%;background:#e07040;border:3px solid #f0a070;position:absolute;top:33px;left:33px}
+#actionBtn{width:68px;height:68px;border-radius:50%;border:none;background:#f0c414;color:#1a1000;font-size:11px;font-weight:800;box-shadow:0 4px 0 #a36b00}
+#actionBtn:active{transform:translateY(3px);box-shadow:0 1px 0 #a36b00}
+#actionBtn.near{box-shadow:0 4px 0 #a36b00,0 0 16px #f0c414}
+#startScreen,#winScreen{position:absolute;inset:0;background:#1a1428;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:100;padding:20px;text-align:center}
 #winScreen{display:none}
-#startScreen h1,#winScreen h1{font-size:26px;color:#f0d080;margin-bottom:10px;text-shadow:0 0 20px rgba(240,208,128,.4)}
-#startScreen p,#winScreen p{font-size:14px;line-height:1.5;margin-bottom:18px;max-width:300px;opacity:.92}
-.big-btn{background:linear-gradient(145deg,#e07040,#c04520);color:#fff;border:none;padding:14px 34px;font-size:16px;font-weight:700;border-radius:50px;box-shadow:0 5px 0 #8a3010,0 8px 20px rgba(224,112,64,.3);cursor:pointer}
-.big-btn:active{transform:translateY(3px);box-shadow:0 2px 0 #8a3010}
+#startScreen h1,#winScreen h1{font-size:24px;color:#f0c860;margin-bottom:10px}
+#startScreen p,#winScreen p{font-size:14px;line-height:1.45;margin-bottom:18px;max-width:280px;opacity:.9}
+.big-btn{background:#e07040;color:#fff;border:none;padding:14px 32px;font-size:16px;font-weight:700;border-radius:40px;box-shadow:0 4px 0 #8a3010}
+.big-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #8a3010}
 </style>
 </head>
 <body>
 <div id="wrapper">
-<div id="ui-top"><h1>🏡 Eldoria</h1><div id="inventory">Ekwipunek: pusty</div></div>
+<div id="ui-top"><h1>Eldoria</h1><div id="inventory">Ekwipunek: pusty</div></div>
 <div id="message"></div>
 <div id="dialog"><div class="name" id="dName"></div><div class="text" id="dText"></div><div class="opts" id="dOpts"></div></div>
 <canvas id="game"></canvas>
@@ -47,443 +45,303 @@ html,body{width:100%;height:100%;overflow:hidden;background:#1a1520;font-family:
 <button id="actionBtn">AKCJA</button>
 </div>
 <div id="startScreen">
-<h1>🏡 Eldoria</h1>
-<p>Witaj w miasteczku Eldoria. Ktoś ukradł magiczny amulet starszego. Porozmawiaj z mieszkańcami, zbierz wskazówki i odzyskaj skarb.</p>
-<button class="big-btn" id="startBtn">Rozpocznij przygodę</button>
+<h1>Eldoria</h1>
+<p>Amulet Starszego zniknął. Porozmawiaj z ludźmi, znajdź klucz i odzyskaj skarb.</p>
+<button class="big-btn" id="startBtn">Start</button>
 </div>
 <div id="winScreen">
-<h1>🏆 Amulet odzyskany!</h1>
-<p>Uratowałeś Eldorię. Starszy jest wdzięczny, a legenda o tobie dopiero się zaczyna.</p>
-<button class="big-btn" id="restartBtn">Zagraj jeszcze raz</button>
+<h1>Amulet odzyskany!</h1>
+<p>Uratowałeś Eldorię. Starszy jest Ci wdzięczny.</p>
+<button class="big-btn" id="restartBtn">Jeszcze raz</button>
 </div>
 </div>
 <script>
 const canvas=document.getElementById('game'),ctx=canvas.getContext('2d');
+ctx.imageSmoothingEnabled=false;
 const invEl=document.getElementById('inventory'),msgEl=document.getElementById('message');
 const actionBtn=document.getElementById('actionBtn'),knob=document.getElementById('joystick-knob'),joyZone=document.getElementById('joystick-zone');
 const dialogEl=document.getElementById('dialog'),dName=document.getElementById('dName'),dText=document.getElementById('dText'),dOpts=document.getElementById('dOpts');
 
-function resize(){const w=document.getElementById('wrapper');const t=document.getElementById('ui-top').offsetHeight,c=document.getElementById('controls').offsetHeight;canvas.width=w.clientWidth;canvas.height=Math.max(180,w.clientHeight-t-c)}
+function resize(){const w=document.getElementById('wrapper');const t=document.getElementById('ui-top').offsetHeight,c=document.getElementById('controls').offsetHeight;canvas.width=w.clientWidth;canvas.height=Math.max(160,w.clientHeight-t-c)}
 window.addEventListener('resize',resize);resize();
 
-const TILE=40,SPEED=2.9;
-const mapW=28,mapH=22;
+const T=32,SPEED=2.6;
+const W=22,H=18;
 
-// 0 grass, 1 path/cobble, 2 wall/house, 3 water, 4 tree solid, 5 flower, 6 dark grass
-let map=[];
-(function buildMap(){
-  for(let y=0;y<mapH;y++){map[y]=[];for(let x=0;x<mapW;x++){
-    // border trees
-    if(x===0||y===0||x===mapW-1||y===mapH-1) map[y][x]=4;
-    else if(y<3||y>mapH-4) map[y][x]=6;
+// 0 grass, 1 path, 2 solid (house), 3 water, 4 tree
+const map=[];
+(function(){
+  for(let y=0;y<H;y++){map[y]=[];for(let x=0;x<W;x++){
+    if(x===0||y===0||x===W-1||y===H-1)map[y][x]=4;
     else map[y][x]=0;
   }}
-  // main path (horizontal + vertical)
-  for(let x=3;x<25;x++){map[10][x]=1;map[11][x]=1;map[12][x]=1}
-  for(let y=4;y<18;y++){map[y][13]=1;map[y][14]=1}
-  // market square
-  for(let y=8;y<15;y++)for(let x=8;x<20;x++)if(map[y][x]!==1)map[y][x]=1;
-  // house footprints (solid)
+  // paths
+  for(let x=2;x<20;x++){map[8][x]=1;map[9][x]=1}
+  for(let y=3;y<15;y++){map[y][10]=1;map[y][11]=1}
+  for(let y=7;y<12;y++)for(let x=6;x<16;x++)map[y][x]=1;
+  // houses
   function house(x,y,w,h){for(let j=0;j<h;j++)for(let i=0;i<w;i++)map[y+j][x+i]=2}
-  house(3,3,5,4);house(20,3,5,4);house(3,15,5,4);house(20,15,5,4);
-  house(9,3,4,3);house(15,3,4,3);
-  // small pond
-  map[16][16]=3;map[16][17]=3;map[17][16]=3;map[17][17]=3;
+  house(2,2,4,3);house(15,2,4,3);house(2,12,4,3);house(15,12,4,3);
+  house(7,2,3,2);house(12,2,3,2);
 })();
 
-// buildings visual (drawn on top)
 const buildings=[
-  {x:3,y:3,w:5,h:4,roof:'#8b4513',wall:'#c4a574',door:true,name:'Dom piekarza'},
-  {x:20,y:3,w:5,h:4,roof:'#5c3a1e',wall:'#d4b896',door:true,name:'Dom strażnika'},
-  {x:3,y:15,w:5,h:4,roof:'#4a3020',wall:'#b89060',door:true,name:'Dom starszego'},
-  {x:20,y:15,w:5,h:4,roof:'#6b3a2a',wall:'#c8a878',door:false},
-  {x:9,y:3,w:4,h:3,roof:'#7a4a20',wall:'#d0b080',door:true,name:'Sklep'},
-  {x:15,y:3,w:4,h:3,roof:'#5a4028',wall:'#c0a070',door:false}
+  {x:2,y:2,w:4,h:3,roof:'#8B4513',wall:'#D2B48C',door:1},
+  {x:15,y:2,w:4,h:3,roof:'#654321',wall:'#DEB887',door:1},
+  {x:2,y:12,w:4,h:3,roof:'#5C4033',wall:'#C4A574',door:1},
+  {x:15,y:12,w:4,h:3,roof:'#6B3A2A',wall:'#C8A878',door:0},
+  {x:7,y:2,w:3,h:2,roof:'#7A4A20',wall:'#D0B080',door:1},
+  {x:12,y:2,w:3,h:2,roof:'#5A4028',wall:'#C0A070',door:0}
 ];
 
 const props=[
-  {t:'stall',x:11.2*TILE,y:8.5*TILE},
-  {t:'cart',x:18*TILE,y:9*TILE},
-  {t:'barrel',x:10*TILE,y:9.5*TILE},{t:'barrel',x:16.5*TILE,y:9.2*TILE},
-  {t:'crate',x:12.5*TILE,y:13*TILE},
-  {t:'well',x:13.3*TILE,y:13.5*TILE},
-  {t:'lamp',x:8*TILE,y:7.5*TILE},{t:'lamp',x:19*TILE,y:7.5*TILE},
-  {t:'lamp',x:8*TILE,y:14.5*TILE},{t:'lamp',x:19*TILE,y:14.5*TILE},
-  {t:'bush',x:7*TILE,y:6*TILE},{t:'bush',x:20*TILE,y:6*TILE},
-  {t:'bush',x:6*TILE,y:14*TILE},{t:'bush',x:21*TILE,y:14*TILE},
-  {t:'flower',x:10*TILE,y:7*TILE},{t:'flower',x:17*TILE,y:7*TILE},
-  {t:'flower',x:9*TILE,y:14*TILE},{t:'flower',x:18*TILE,y:14*TILE}
+  {t:'stall',x:8*T,y:7*T},
+  {t:'well',x:10.2*T,y:10.5*T},
+  {t:'barrel',x:7.5*T,y:8*T},{t:'barrel',x:13*T,y:8*T},
+  {t:'lamp',x:6*T,y:6.5*T},{t:'lamp',x:14.5*T,y:6.5*T},
+  {t:'lamp',x:6*T,y:11.5*T},{t:'lamp',x:14.5*T,y:11.5*T},
+  {t:'bush',x:5*T,y:5*T},{t:'bush',x:16*T,y:5*T},
+  {t:'bush',x:5*T,y:11*T},{t:'bush',x:16*T,y:11*T}
 ];
 
-// NPCs
 const npcs=[
-  {id:'baker',x:11.5*TILE,y:9.2*TILE,name:'Piekarz Marek',color:'#c07040',
-    lines:{
-      start:['Witaj wędrowcze! Amulet starszego zniknął tej nocy.','Słyszałem hałas koło studni. Może tam coś znajdziesz?'],
-      hasClue:['Klucz? Świetnie. Strażnik pewnie wie więcej.']
-    }},
-  {id:'guard',x:21*TILE,y:5.5*TILE,name:'Strażnik Olek',color:'#4060a0',
-    lines:{
-      start:['Stój! Amulet został skradziony.','Widziałem cień biegnący w stronę starej piwnicy za domem starszego.'],
-      hasKey:['Masz klucz? To otwórz piwnicę i sprawdź.']
-    }},
-  {id:'elder',x:5*TILE,y:16.5*TILE,name:'Starszy Tomasz',color:'#806040',
-    lines:{
-      start:['Mój amulet... chronił całą Eldorię.','Proszę, odzyskaj go. Złodziej zostawił klucz przy studni.'],
-      hasAmulet:['Dziękuję! Eldoria jest bezpieczna dzięki tobie.']
-    }},
-  {id:'kid',x:15*TILE,y:11*TILE,name:'Mała Ania',color:'#e080a0',
-    lines:{
-      start:['Widziałam błyszczącą rzecz koło studni!','A potem ktoś uciekł za domy.']
-    }}
+  {id:'baker',x:8.5*T,y:7.8*T,name:'Piekarz',col:'#C07040',
+    talk:['Witaj! Amulet Starszego zniknął.','Słyszałem szelest koło studni.']},
+  {id:'guard',x:16*T,y:4*T,name:'Strażnik',col:'#4060A0',
+    talk:['Szukamy złodzieja.','Klucz może być przy studni.']},
+  {id:'elder',x:3.5*T,y:13.5*T,name:'Starszy',col:'#806040',
+    talk:['Mój amulet chronił wioskę...','Znajdź klucz, otwórz piwnicę za moim domem.']},
+  {id:'kid',x:12*T,y:9*T,name:'Ania',col:'#E080A0',
+    talk:['Widziałam coś błyszczącego przy studni!']}
 ];
 
-let player={x:14*TILE,y:11*TILE,w:22,h:26,dir:'down',frame:0,walking:false};
+let player={x:10.5*T,y:9*T,w:16,h:20,dir:'down',frame:0,walk:0};
 let items=[
-  {id:'key',x:13.5*TILE,y:14.2*TILE,w:18,h:18,name:'Zardzewiały klucz',taken:false,hidden:true},
-  {id:'amulet',x:5.5*TILE,y:17.5*TILE,w:20,h:20,name:'Magiczny amulet',taken:false,hidden:true,requires:['key']}
+  {id:'key',x:10.5*T,y:11.2*T,name:'Klucz',taken:0,hide:1},
+  {id:'amulet',x:3.8*T,y:14.5*T,name:'Amulet',taken:0,hide:1}
 ];
-// cellar entrance near elder house
-let cellarOpen=false;
+let inv=[],parts=[],flags={talked:0,key:0};
+let joy={on:0,dx:0,dy:0,r:34},keys={u:0,d:0,l:0,r:0};
+let started=0,msgT=0,time=0,near=0,dialog=0;
 
-let inventory=[],particles=[],flags={talkedBaker:false,talkedGuard:false,talkedElder:false,foundKey:false};
-let joy={active:false,dx:0,dy:0,maxR:36};
-let keys={up:0,down:0,left:0,right:0};
-let gameStarted=false,messageTimer=0,time=0,near=false,inDialog=false;
-
-function jStart(e){e.preventDefault();if(inDialog)return;joy.active=true;jMove(e)}
-function jMove(e){if(!joy.active)return;e.preventDefault();const t=e.touches?e.touches[0]:e;const r=joyZone.getBoundingClientRect();let dx=t.clientX-(r.left+r.width/2),dy=t.clientY-(r.top+r.height/2);const d=Math.hypot(dx,dy);if(d>joy.maxR){dx=dx/d*joy.maxR;dy=dy/d*joy.maxR}joy.dx=dx/joy.maxR;joy.dy=dy/joy.maxR;knob.style.transform=`translate(${dx}px,${dy}px)`}
-function jEnd(e){e.preventDefault();joy.active=false;joy.dx=0;joy.dy=0;knob.style.transform='translate(0,0)'}
-joyZone.addEventListener('touchstart',jStart,{passive:false});
-joyZone.addEventListener('touchmove',jMove,{passive:false});
-joyZone.addEventListener('touchend',jEnd,{passive:false});
-joyZone.addEventListener('touchcancel',jEnd,{passive:false});
-joyZone.addEventListener('mousedown',jStart);
-window.addEventListener('mousemove',e=>{if(joy.active)jMove(e)});
-window.addEventListener('mouseup',jEnd);
-
-window.addEventListener('keydown',e=>{
-  if(inDialog)return;
-  if(['ArrowUp','KeyW'].includes(e.code))keys.up=1;
-  if(['ArrowDown','KeyS'].includes(e.code))keys.down=1;
-  if(['ArrowLeft','KeyA'].includes(e.code))keys.left=1;
-  if(['ArrowRight','KeyD'].includes(e.code))keys.right=1;
-  if(['Space','KeyE'].includes(e.code)){e.preventDefault();doAction()}
-});
-window.addEventListener('keyup',e=>{
-  if(['ArrowUp','KeyW'].includes(e.code))keys.up=0;
-  if(['ArrowDown','KeyS'].includes(e.code))keys.down=0;
-  if(['ArrowLeft','KeyA'].includes(e.code))keys.left=0;
-  if(['ArrowRight','KeyD'].includes(e.code))keys.right=0;
-});
-actionBtn.addEventListener('touchstart',e=>{e.preventDefault();doAction()},{passive:false});
-actionBtn.addEventListener('click',doAction);
-document.getElementById('startBtn').onclick=()=>{document.getElementById('startScreen').style.display='none';gameStarted=true;showMsg('Porozmawiaj z mieszkańcami (AKCJA)')};
+function jS(e){e.preventDefault();if(dialog)return;joy.on=1;jM(e)}
+function jM(e){if(!joy.on)return;e.preventDefault();const t=e.touches?e.touches[0]:e;const r=joyZone.getBoundingClientRect();let dx=t.clientX-(r.left+r.width/2),dy=t.clientY-(r.top+r.height/2);const d=Math.hypot(dx,dy);if(d>joy.r){dx=dx/d*joy.r;dy=dy/d*joy.r}joy.dx=dx/joy.r;joy.dy=dy/joy.r;knob.style.transform=`translate(${dx}px,${dy}px)`}
+function jE(e){e.preventDefault();joy.on=0;joy.dx=0;joy.dy=0;knob.style.transform='translate(0,0)'}
+joyZone.addEventListener('touchstart',jS,{passive:0});
+joyZone.addEventListener('touchmove',jM,{passive:0});
+joyZone.addEventListener('touchend',jE,{passive:0});
+joyZone.addEventListener('mousedown',jS);
+window.addEventListener('mousemove',e=>{if(joy.on)jM(e)});
+window.addEventListener('mouseup',jE);
+window.addEventListener('keydown',e=>{if(dialog)return;if(['ArrowUp','KeyW'].includes(e.code))keys.u=1;if(['ArrowDown','KeyS'].includes(e.code))keys.d=1;if(['ArrowLeft','KeyA'].includes(e.code))keys.l=1;if(['ArrowRight','KeyD'].includes(e.code))keys.r=1;if(['Space','KeyE'].includes(e.code)){e.preventDefault();act()}});
+window.addEventListener('keyup',e=>{if(['ArrowUp','KeyW'].includes(e.code))keys.u=0;if(['ArrowDown','KeyS'].includes(e.code))keys.d=0;if(['ArrowLeft','KeyA'].includes(e.code))keys.l=0;if(['ArrowRight','KeyD'].includes(e.code))keys.r=0});
+actionBtn.addEventListener('touchstart',e=>{e.preventDefault();act()},{passive:0});
+actionBtn.addEventListener('click',act);
+document.getElementById('startBtn').onclick=()=>{document.getElementById('startScreen').style.display='none';started=1;msg('Porozmawiaj z ludźmi (AKCJA)')};
 document.getElementById('restartBtn').onclick=()=>location.reload();
 
-function showMsg(t,ms=2800){msgEl.innerHTML=t;msgEl.style.display='block';messageTimer=ms}
-function updateInv(){invEl.textContent='Ekwipunek: '+(inventory.length?inventory.map(i=>i.name).join(', '):'pusty')}
+function msg(t,ms=2600){msgEl.textContent=t;msgEl.style.display='block';msgT=ms}
+function updInv(){invEl.textContent='Ekwipunek: '+(inv.length?inv.map(i=>i.name).join(', '):'pusty')}
 
-function canWalk(px,py){
-  const pts=[[px+4,py+10],[px+player.w-4,py+10],[px+4,py+player.h-2],[px+player.w-4,py+player.h-2]];
-  for(const[x,y]of pts){
-    const tx=Math.floor(x/TILE),ty=Math.floor(y/TILE);
-    if(tx<0||ty<0||tx>=mapW||ty>=mapH)return false;
-    const t=map[ty][tx];
-    if(t===2||t===3||t===4)return false;
-  }
-  return true;
+function solid(px,py){
+  const pts=[[px+3,py+8],[px+player.w-3,py+8],[px+3,py+player.h-2],[px+player.w-3,py+player.h-2]];
+  for(const[x,y]of pts){const tx=x/T|0,ty=y/T|0;if(tx<0||ty<0||tx>=W||ty>=H)return 1;const t=map[ty][tx];if(t===2||t===3||t===4)return 1}return 0
 }
-function isNear(o,d=38){return Math.hypot((player.x+player.w/2)-(o.x+(o.w||16)/2),(player.y+player.h/2)-(o.y+(o.h||16)/2))<d}
+function nearObj(o,d=32){return Math.hypot(player.x+8-(o.x+(o.w||12)/2),player.y+10-(o.y+(o.h||12)/2))<d}
 
-function openDialog(npc){
-  inDialog=true;dialogEl.style.display='block';
-  dName.textContent=npc.name;
-  let lines=npc.lines.start;
-  if(npc.id==='baker'&&flags.foundKey)lines=npc.lines.hasClue;
-  if(npc.id==='guard'&&flags.foundKey)lines=npc.lines.hasKey;
-  if(npc.id==='elder'&&inventory.find(i=>i.id==='amulet'))lines=npc.lines.hasAmulet;
-  dText.textContent=lines[0];
-  dOpts.innerHTML='';
-  const btn=document.createElement('button');
-  btn.textContent=lines.length>1?'Dalej...':'Do widzenia';
-  let idx=0;
-  btn.onclick=()=>{
-    idx++;
-    if(idx<lines.length){dText.textContent=lines[idx];if(idx===lines.length-1)btn.textContent='Do widzenia'}
-    else{
-      dialogEl.style.display='none';inDialog=false;
-      if(npc.id==='baker')flags.talkedBaker=true;
-      if(npc.id==='guard')flags.talkedGuard=true;
-      if(npc.id==='elder')flags.talkedElder=true;
-      if(npc.id==='elder'&&inventory.find(i=>i.id==='amulet')){
-        setTimeout(()=>document.getElementById('winScreen').style.display='flex',400);
-      }
-    }
-  };
-  dOpts.appendChild(btn);
+function openD(n){
+  dialog=1;dialogEl.style.display='block';dName.textContent=n.name;
+  let lines=n.talk,i=0;dText.textContent=lines[0];dOpts.innerHTML='';
+  const b=document.createElement('button');b.textContent=lines.length>1?'Dalej':'OK';
+  b.onclick=()=>{i++;if(i<lines.length){dText.textContent=lines[i];if(i===lines.length-1)b.textContent='OK'}else{
+    dialogEl.style.display='none';dialog=0;flags.talked=1;
+    if(n.id==='elder'&&inv.find(x=>x.id==='amulet'))setTimeout(()=>document.getElementById('winScreen').style.display='flex',300);
+  }};
+  dOpts.appendChild(b);
 }
 
-function checkNear(){
-  near=false;
-  for(const n of npcs)if(isNear({x:n.x,y:n.y,w:20,h:24})){near=true;break}
-  for(const it of items)if(!it.taken&&!it.hidden&&isNear(it)){near=true;break}
-  // cellar spot
-  if(flags.foundKey&&Math.hypot(player.x-5.5*TILE,player.y-17.8*TILE)<40)near=true;
-  // reveal key near well after talking
-  if((flags.talkedBaker||flags.talkedElder)&&!flags.foundKey){
-    const key=items.find(i=>i.id==='key');
-    if(key)key.hidden=false;
-  }
+function check(){
+  near=0;
+  for(const n of npcs)if(nearObj({x:n.x,y:n.y,w:16,h:20}))near=1;
+  for(const it of items)if(!it.taken&&!it.hide&&nearObj(it))near=1;
+  if(flags.key&&Math.hypot(player.x-3.8*T,player.y-14.5*T)<36)near=1;
+  if(flags.talked&&!flags.key){const k=items.find(i=>i.id==='key');if(k)k.hide=0}
   actionBtn.classList.toggle('near',near);
 }
 
-function spawnParticles(x,y,color,n=10){
-  for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,sp=1+Math.random()*2;
-    particles.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-1,life:1,color,size:2+Math.random()*2.5})}
-}
-
-function doAction(){
-  if(!gameStarted||inDialog)return;
-  for(const n of npcs){
-    if(isNear({x:n.x,y:n.y,w:20,h:24})){openDialog(n);return}
-  }
+function act(){
+  if(!started||dialog)return;
+  for(const n of npcs)if(nearObj({x:n.x,y:n.y,w:16,h:20})){openD(n);return}
   for(const it of items){
-    if(it.taken||it.hidden)continue;
-    if(isNear(it)){
-      if(it.requires&&!it.requires.every(r=>inventory.find(i=>i.id===r))){showMsg('Potrzebujesz klucza!');return}
-      it.taken=true;inventory.push(it);updateInv();
-      if(it.id==='key'){flags.foundKey=true;showMsg('🔑 Znalazłeś klucz przy studni!');}
-      if(it.id==='amulet'){showMsg('✨ Odzyskałeś amulet! Oddaj go Starszemu.');}
-      spawnParticles(it.x+10,it.y+10,it.id==='amulet'?'#a855f7':'#f1c40f',12);
+    if(it.taken||it.hide)continue;
+    if(nearObj(it)){
+      it.taken=1;inv.push(it);updInv();
+      if(it.id==='key'){flags.key=1;msg('Klucz znaleziony!')}
+      if(it.id==='amulet')msg('Amulet! Oddaj Starszemu.');
       return;
     }
   }
-  // open cellar / reveal amulet
-  if(flags.foundKey&&Math.hypot(player.x-5.5*TILE,player.y-17.8*TILE)<45){
-    const am=items.find(i=>i.id==='amulet');
-    if(am&&am.hidden){am.hidden=false;showMsg('Piwnica otwarta! Amulet jest w środku.');spawnParticles(5.5*TILE,17.5*TILE,'#a855f7',8);return}
+  if(flags.key&&Math.hypot(player.x-3.8*T,player.y-14.5*T)<40){
+    const a=items.find(i=>i.id==='amulet');
+    if(a&&a.hide){a.hide=0;msg('Piwnica otwarta — amulet jest tu!');return}
   }
-  showMsg('Nic tu nie ma...');
+  msg('Nic tu nie ma');
 }
 
 function update(dt){
-  if(!gameStarted||inDialog)return;
-  time+=dt;
+  if(!started||dialog)return;time+=dt;
   let dx=0,dy=0;
-  if(Math.abs(joy.dx)>0.12||Math.abs(joy.dy)>0.12){dx=joy.dx*SPEED;dy=joy.dy*SPEED}
-  else{if(keys.up)dy=-SPEED;if(keys.down)dy=SPEED;if(keys.left)dx=-SPEED;if(keys.right)dx=SPEED;if(dx&&dy){dx*=.707;dy*=.707}}
-  player.walking=Math.abs(dx)>0.1||Math.abs(dy)>0.1;
+  if(Math.abs(joy.dx)>0.15||Math.abs(joy.dy)>0.15){dx=joy.dx*SPEED;dy=joy.dy*SPEED}
+  else{if(keys.u)dy=-SPEED;if(keys.d)dy=SPEED;if(keys.l)dx=-SPEED;if(keys.r)dx=SPEED;if(dx&&dy){dx*=.7;dy*=.7}}
+  player.walk=Math.abs(dx)>0.1||Math.abs(dy)>0.1;
   if(Math.abs(dx)>Math.abs(dy))player.dir=dx>0?'right':'left';
   else if(Math.abs(dy)>0.1)player.dir=dy>0?'down':'up';
-  if(dx&&canWalk(player.x+dx,player.y))player.x+=dx;
-  if(dy&&canWalk(player.x,player.y+dy))player.y+=dy;
-  if(player.walking)player.frame+=dt*0.014;
-  checkNear();
-  for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.x+=p.vx;p.y+=p.vy;p.vy+=0.03;p.life-=dt*0.002;if(p.life<=0)particles.splice(i,1)}
-  if(messageTimer>0){messageTimer-=dt;if(messageTimer<=0)msgEl.style.display='none'}
+  if(dx&&!solid(player.x+dx,player.y))player.x+=dx;
+  if(dy&&!solid(player.x,player.y+dy))player.y+=dy;
+  if(player.walk)player.frame+=dt*0.012;
+  check();
+  if(msgT>0){msgT-=dt;if(msgT<=0)msgEl.style.display='none'}
 }
 
-function hash(x,y){return ((x*374761393+y*668265263)&0x7fffffff)%1000/1000}
+// PIXEL DRAW HELPERS
+function pset(x,y,c){ctx.fillStyle=c;ctx.fillRect(x|0,y|0,1,1)}
+function rect(x,y,w,h,c){ctx.fillStyle=c;ctx.fillRect(x|0,y|0,w|0,h|0)}
 
-// ===== DRAW =====
-function drawGrass(px,py,tx,ty,dark){
-  const h=hash(tx,ty);
-  ctx.fillStyle=dark?'#2d4a28':'#3d6b35';ctx.fillRect(px,py,TILE,TILE);
-  ctx.fillStyle=dark?'#355530':'#4a7a40';
-  if(h>0.4)ctx.fillRect(px+2,py+2,TILE-4,TILE-4);
-  // grass blades
-  ctx.strokeStyle=dark?'#2a4525':'#5a9050';ctx.lineWidth=1;
-  for(let i=0;i<3;i++){const gx=px+6+i*10+h*5,gy=py+8+h*10;ctx.beginPath();ctx.moveTo(gx,gy+8);ctx.lineTo(gx+1,gy);ctx.stroke()}
+function drawGrass(px,py,tx,ty){
+  const v=((tx*7+ty*13)&7);
+  rect(px,py,T,T,v>3?'#3d7a3a':'#368034');
+  // dots
+  ctx.fillStyle='#2d6a2a';
+  if(v&1)ctx.fillRect(px+4,py+6,2,2);
+  if(v&2)ctx.fillRect(px+20,py+18,2,2);
+  if(v&4)ctx.fillRect(px+12,py+22,2,2);
 }
 function drawPath(px,py,tx,ty){
-  const h=hash(tx,ty);
-  ctx.fillStyle='#8a7a60';ctx.fillRect(px,py,TILE,TILE);
-  // cobbles
-  ctx.fillStyle=h>0.5?'#9a8a6e':'#7a6a52';
-  ctx.beginPath();ctx.ellipse(px+10,py+10,8,6,0,0,Math.PI*2);ctx.fill();
-  ctx.beginPath();ctx.ellipse(px+28,py+12,7,5,0,0,Math.PI*2);ctx.fill();
-  ctx.beginPath();ctx.ellipse(px+14,py+28,8,6,0,0,Math.PI*2);ctx.fill();
-  ctx.beginPath();ctx.ellipse(px+30,py+30,6,5,0,0,Math.PI*2);ctx.fill();
-  ctx.strokeStyle='rgba(0,0,0,.15)';ctx.lineWidth=1;
-  ctx.strokeRect(px+0.5,py+0.5,TILE-1,TILE-1);
-}
-function drawWater(px,py){
-  ctx.fillStyle='#2a6a8a';ctx.fillRect(px,py,TILE,TILE);
-  ctx.fillStyle='rgba(100,180,220,.3)';
-  ctx.beginPath();ctx.ellipse(px+12,py+10,10,6,0,0,Math.PI*2);ctx.fill();
-  ctx.beginPath();ctx.ellipse(px+28,py+24,8,5,0,0,Math.PI*2);ctx.fill();
+  rect(px,py,T,T,'#9a8a68');
+  const v=((tx*3+ty*5)&3);
+  ctx.fillStyle='#8a7a58';
+  ctx.fillRect(px+2,py+2,12,10);ctx.fillRect(px+16,py+4,12,10);
+  ctx.fillRect(px+4,py+16,12,10);ctx.fillRect(px+18,py+18,10,10);
+  ctx.fillStyle='#7a6a48';
+  if(v)ctx.fillRect(px+6,py+6,6,4);
 }
 function drawTree(px,py){
-  // trunk
-  ctx.fillStyle='#5a3a20';ctx.fillRect(px+14,py+22,12,18);
-  // foliage
-  ctx.fillStyle='#2d5a28';ctx.beginPath();ctx.arc(px+20,py+16,18,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#3d7a38';ctx.beginPath();ctx.arc(px+14,py+12,12,0,Math.PI*2);ctx.fill();
-  ctx.beginPath();ctx.arc(px+26,py+12,12,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#4a8a40';ctx.beginPath();ctx.arc(px+20,py+8,10,0,Math.PI*2);ctx.fill();
+  rect(px+12,py+18,8,14,'#5a3a18');
+  ctx.fillStyle='#2d5a28';ctx.beginPath();ctx.arc(px+16,py+14,14,0,7);ctx.fill();
+  ctx.fillStyle='#3d7a38';ctx.beginPath();ctx.arc(px+10,py+10,9,0,7);ctx.fill();
+  ctx.beginPath();ctx.arc(px+22,py+10,9,0,7);ctx.fill();
+  ctx.fillStyle='#4a8a40';ctx.beginPath();ctx.arc(px+16,py+6,8,0,7);ctx.fill();
 }
-
-function drawBuilding(b){
-  const px=b.x*TILE,py=b.y*TILE,w=b.w*TILE,h=b.h*TILE;
+function drawHouse(b){
+  const px=b.x*T,py=b.y*T,w=b.w*T,h=b.h*T;
   // wall
-  ctx.fillStyle=b.wall;ctx.fillRect(px,py+h*0.35,w,h*0.65);
-  // timber
+  rect(px,py+h*0.4,w,h*0.6,b.wall);
+  // timber cross
   ctx.strokeStyle='#5a3a18';ctx.lineWidth=2;
-  ctx.strokeRect(px+2,py+h*0.35+2,w-4,h*0.65-4);
-  ctx.beginPath();ctx.moveTo(px+w/2,py+h*0.35);ctx.lineTo(px+w/2,py+h);ctx.stroke();
-  // roof
+  ctx.strokeRect(px+2,py+h*0.4+2,w-4,h*0.6-4);
+  ctx.beginPath();ctx.moveTo(px+w/2,py+h*0.4);ctx.lineTo(px+w/2,py+h);ctx.stroke();
+  // roof triangle
   ctx.fillStyle=b.roof;
-  ctx.beginPath();
-  ctx.moveTo(px-4,py+h*0.4);
-  ctx.lineTo(px+w/2,py-4);
-  ctx.lineTo(px+w+4,py+h*0.4);
-  ctx.closePath();ctx.fill();
-  ctx.strokeStyle='#3a2410';ctx.lineWidth=1.5;ctx.stroke();
+  ctx.beginPath();ctx.moveTo(px-3,py+h*0.42);ctx.lineTo(px+w/2,py-2);ctx.lineTo(px+w+3,py+h*0.42);ctx.fill();
   // door
-  if(b.door){
-    ctx.fillStyle='#4a2c10';ctx.fillRect(px+w/2-8,py+h-22,16,20);
-    ctx.fillStyle='#e8c040';ctx.beginPath();ctx.arc(px+w/2+4,py+h-12,2,0,Math.PI*2);ctx.fill();
-  }
+  if(b.door){rect(px+w/2-6,py+h-16,12,16,'#4a2c10');ctx.fillStyle='#e8c040';ctx.fillRect(px+w/2+2,py+h-10,2,2)}
   // windows
-  ctx.fillStyle='#1a3050';ctx.fillRect(px+6,py+h*0.45,10,10);ctx.fillRect(px+w-16,py+h*0.45,10,10);
-  ctx.fillStyle='rgba(180,210,255,.35)';ctx.fillRect(px+7,py+h*0.45+1,8,8);ctx.fillRect(px+w-15,py+h*0.45+1,8,8);
+  rect(px+4,py+h*0.5,8,8,'#1a3050');rect(px+w-12,py+h*0.5,8,8,'#1a3050');
+  ctx.fillStyle='#8ab4e0';ctx.fillRect(px+5,py+h*0.5+1,6,6);ctx.fillRect(px+w-11,py+h*0.5+1,6,6);
 }
-
 function drawStall(px,py){
-  ctx.fillStyle='#6b4423';ctx.fillRect(px,py+16,50,20);
-  ctx.fillStyle='#8b5a2b';ctx.fillRect(px+2,py+18,46,16);
-  // awning
-  ctx.fillStyle='#c04040';ctx.fillRect(px-2,py+4,54,14);
-  ctx.fillStyle='#e06060';ctx.fillRect(px,py+6,50,10);
+  rect(px,py+12,40,14,'#6b4423');
+  rect(px+2,py+14,36,10,'#8b5a2b');
+  rect(px-2,py+2,44,12,'#c04040');
+  rect(px,py+4,40,8,'#e06060');
   // bread
-  ctx.fillStyle='#e8c080';ctx.beginPath();ctx.ellipse(px+15,py+24,6,4,0,0,Math.PI*2);ctx.fill();
-  ctx.beginPath();ctx.ellipse(px+28,py+25,5,3.5,0,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#d4a060';ctx.beginPath();ctx.ellipse(px+40,py+24,5,4,0,0,Math.PI*2);ctx.fill();
-}
-function drawCart(px,py){
-  ctx.fillStyle='#6b4423';ctx.fillRect(px+8,py+10,40,18);
-  ctx.fillStyle='#5a3818';ctx.beginPath();ctx.arc(px+14,py+30,8,0,Math.PI*2);ctx.fill();
-  ctx.beginPath();ctx.arc(px+42,py+30,8,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#3a2810';ctx.beginPath();ctx.arc(px+14,py+30,3,0,Math.PI*2);ctx.fill();
-  ctx.beginPath();ctx.arc(px+42,py+30,3,0,Math.PI*2);ctx.fill();
-}
-function drawBarrel(px,py){
-  ctx.fillStyle='#6b4423';ctx.beginPath();ctx.ellipse(px+10,py+12,10,12,0,0,Math.PI*2);ctx.fill();
-  ctx.strokeStyle='#3d2810';ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(px+10,py+12,10,12,0,0,Math.PI*2);ctx.stroke();
-  ctx.fillStyle='#8b5a2b';ctx.fillRect(px+2,py+8,16,3);ctx.fillRect(px+2,py+14,16,3);
+  ctx.fillStyle='#e8c080';ctx.beginPath();ctx.ellipse(px+12,py+20,5,3,0,0,7);ctx.fill();
+  ctx.beginPath();ctx.ellipse(px+24,py+21,4,3,0,0,7);ctx.fill();
 }
 function drawWell(px,py){
-  ctx.fillStyle='#6a6a6a';ctx.beginPath();ctx.ellipse(px+16,py+18,16,10,0,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#4a4a4a';ctx.beginPath();ctx.ellipse(px+16,py+16,12,7,0,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#2a2a2a';ctx.beginPath();ctx.ellipse(px+16,py+16,8,4,0,0,Math.PI*2);ctx.fill();
-  // posts
-  ctx.fillStyle='#5a3a20';ctx.fillRect(px+4,py,4,16);ctx.fillRect(px+24,py,4,16);
-  ctx.fillRect(px+4,py,24,3);
+  ctx.fillStyle='#6a6a6a';ctx.beginPath();ctx.ellipse(px+12,py+14,12,8,0,0,7);ctx.fill();
+  ctx.fillStyle='#3a3a3a';ctx.beginPath();ctx.ellipse(px+12,py+13,8,5,0,0,7);ctx.fill();
+  rect(px+2,py,4,12,'#5a3a20');rect(px+18,py,4,12,'#5a3a20');rect(px+2,py,20,3,'#5a3a20');
+}
+function drawBarrel(px,py){
+  ctx.fillStyle='#6b4423';ctx.beginPath();ctx.ellipse(px+8,py+10,8,10,0,0,7);ctx.fill();
+  ctx.strokeStyle='#3d2810';ctx.lineWidth=1;ctx.beginPath();ctx.ellipse(px+8,py+10,8,10,0,0,7);ctx.stroke();
+  rect(px+1,py+7,14,2,'#8b5a2b');rect(px+1,py+12,14,2,'#8b5a2b');
 }
 function drawLamp(px,py){
-  ctx.fillStyle='#4a3a28';ctx.fillRect(px+6,py+8,4,20);
-  ctx.fillStyle='#e8c040';ctx.beginPath();ctx.arc(px+8,py+6,6,0,Math.PI*2);ctx.fill();
-  const g=ctx.createRadialGradient(px+8,py+6,1,px+8,py+6,20);
-  g.addColorStop(0,'rgba(255,200,80,.35)');g.addColorStop(1,'rgba(255,150,0,0)');
-  ctx.fillStyle=g;ctx.beginPath();ctx.arc(px+8,py+6,20,0,Math.PI*2);ctx.fill();
+  rect(px+5,py+8,3,14,'#4a3a28');
+  ctx.fillStyle='#e8c040';ctx.beginPath();ctx.arc(px+6.5,py+6,5,0,7);ctx.fill();
 }
 function drawBush(px,py){
-  ctx.fillStyle='#2d5a28';ctx.beginPath();ctx.arc(px+12,py+14,12,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#3d7a38';ctx.beginPath();ctx.arc(px+6,py+12,8,0,Math.PI*2);ctx.fill();
-  ctx.beginPath();ctx.arc(px+16,py+10,9,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#2d5a28';ctx.beginPath();ctx.arc(px+10,py+12,10,0,7);ctx.fill();
+  ctx.fillStyle='#3d7a38';ctx.beginPath();ctx.arc(px+5,py+10,7,0,7);ctx.fill();
+  ctx.beginPath();ctx.arc(px+14,py+9,7,0,7);ctx.fill();
 }
-function drawFlower(px,py){
-  ctx.fillStyle='#3d7a38';ctx.fillRect(px+5,py+6,3,8);
-  ctx.fillStyle='#e04080';ctx.beginPath();ctx.arc(px+6,py+5,4,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#f0e040';ctx.beginPath();ctx.arc(px+6,py+5,1.5,0,Math.PI*2);ctx.fill();
-}
-
 function drawNPC(n){
   const px=n.x,py=n.y;
-  ctx.fillStyle='rgba(0,0,0,.25)';ctx.beginPath();ctx.ellipse(px+10,py+24,9,3.5,0,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#2a2a3a';ctx.fillRect(px+5,py+16,5,9);ctx.fillRect(px+11,py+16,5,9);
-  ctx.fillStyle=n.color;ctx.fillRect(px+3,py+8,16,11);
-  ctx.fillStyle='#f0c9a0';ctx.beginPath();ctx.arc(px+11,py+5,7,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#1a1a1a';ctx.fillRect(px+7,py+3,2.5,2.5);ctx.fillRect(px+12,py+3,2.5,2.5);
+  ctx.fillStyle='#0004';ctx.beginPath();ctx.ellipse(px+8,py+20,7,3,0,0,7);ctx.fill();
+  rect(px+4,py+14,4,7,'#2a2a3a');rect(px+9,py+14,4,7,'#2a2a3a');
+  rect(px+2,py+7,13,9,n.col);
+  ctx.fillStyle='#f0c9a0';ctx.beginPath();ctx.arc(px+8,py+4,6,0,7);ctx.fill();
+  ctx.fillStyle='#1a1a1a';ctx.fillRect(px+5,py+2,2,2);ctx.fillRect(px+10,py+2,2,2);
 }
-
 function drawPlayer(px,py){
-  const bob=player.walking?Math.sin(player.frame)*2:0;const y=py+bob;
-  ctx.fillStyle='rgba(0,0,0,.3)';ctx.beginPath();ctx.ellipse(px+11,py+25,10,4,0,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#1a2535';ctx.fillRect(px+4,y+17,6,10);ctx.fillRect(px+12,y+17,6,10);
-  ctx.fillStyle='#3b82f6';ctx.fillRect(px+2,y+8,18,12);
-  ctx.fillStyle='#2563eb';ctx.fillRect(px+2,y+8,18,3);
-  ctx.fillStyle='#f0c9a0';ctx.beginPath();ctx.arc(px+11,y+5,8,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#3d2914';ctx.beginPath();ctx.arc(px+11,y+1.5,7,Math.PI*1.15,Math.PI*1.85);ctx.fill();
+  const bob=player.walk?Math.sin(player.frame)*1.5:0;const y=py+bob;
+  ctx.fillStyle='#0005';ctx.beginPath();ctx.ellipse(px+8,py+20,8,3,0,0,7);ctx.fill();
+  rect(px+3,y+13,5,8,'#1a2535');rect(px+9,y+13,5,8,'#1a2535');
+  rect(px+2,y+6,13,10,'#3b82f6');
+  rect(px+2,y+6,13,3,'#2563eb');
+  ctx.fillStyle='#f0c9a0';ctx.beginPath();ctx.arc(px+8,y+4,6,0,7);ctx.fill();
+  ctx.fillStyle='#3d2914';ctx.beginPath();ctx.arc(px+8,y+1,5.5,3.5,6);ctx.fill();
   ctx.fillStyle='#1a1a1a';
-  if(player.dir==='left')ctx.fillRect(px+5,y+3,3,3);
-  else if(player.dir==='right')ctx.fillRect(px+14,y+3,3,3);
-  else if(player.dir!=='up'){ctx.fillRect(px+7,y+3,3,3);ctx.fillRect(px+13,y+3,3,3)}
+  if(player.dir==='left')ctx.fillRect(px+4,y+2,2,2);
+  else if(player.dir==='right')ctx.fillRect(px+11,y+2,2,2);
+  else if(player.dir!=='up'){ctx.fillRect(px+5,y+2,2,2);ctx.fillRect(px+10,y+2,2,2)}
 }
-
 function drawItem(it){
-  if(it.hidden||it.taken)return;
-  const px=it.x,py=it.y,pulse=Math.sin(time*.006)*2;
+  if(it.hide||it.taken)return;
+  const px=it.x,py=it.y,p=Math.sin(time*.006)*1.5;
   if(it.id==='key'){
-    const g=ctx.createRadialGradient(px+9,py+9,1,px+9,py+9,14+pulse);
-    g.addColorStop(0,'rgba(241,196,15,.45)');g.addColorStop(1,'rgba(241,196,15,0)');
-    ctx.fillStyle=g;ctx.beginPath();ctx.arc(px+9,py+9,14+pulse,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#e8c040';ctx.fillRect(px+4,py+6,11,4);
-    ctx.beginPath();ctx.arc(px+5,py+8,5.5,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#1a1a2e';ctx.beginPath();ctx.arc(px+5,py+8,2.2,0,Math.PI*2);ctx.fill();
-  }else if(it.id==='amulet'){
-    const g=ctx.createRadialGradient(px+10,py+10,1,px+10,py+10,20+pulse);
-    g.addColorStop(0,'rgba(168,85,247,.5)');g.addColorStop(1,'rgba(168,85,247,0)');
-    ctx.fillStyle=g;ctx.beginPath();ctx.arc(px+10,py+10,20+pulse,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#a855f7';ctx.beginPath();ctx.arc(px+10,py+10,9,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#ef4444';ctx.beginPath();ctx.arc(px+10,py+10,4,0,Math.PI*2);ctx.fill();
-    ctx.strokeStyle='#fbbf24';ctx.lineWidth=2;ctx.beginPath();ctx.arc(px+10,py+10,12,0,Math.PI*2);ctx.stroke();
+    ctx.fillStyle='#f1c40f';ctx.fillRect(px+3,py+5,10,3);
+    ctx.beginPath();ctx.arc(px+4,py+6.5,4,0,7);ctx.fill();
+    ctx.fillStyle='#1a1a2e';ctx.beginPath();ctx.arc(px+4,py+6.5,1.5,0,7);ctx.fill();
+  }else{
+    ctx.fillStyle='#a855f7';ctx.beginPath();ctx.arc(px+8,py+8,7+p,0,7);ctx.fill();
+    ctx.fillStyle='#ef4444';ctx.beginPath();ctx.arc(px+8,py+8,3,0,7);ctx.fill();
+    ctx.strokeStyle='#fbbf24';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(px+8,py+8,9,0,7);ctx.stroke();
   }
 }
 
 function draw(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
-  const camX=player.x-canvas.width/2+player.w/2;
-  const camY=player.y-canvas.height/2+player.h/2;
-  ctx.save();ctx.translate(-Math.floor(camX),-Math.floor(camY));
+  const cx=player.x-canvas.width/2+8,cy=player.y-canvas.height/2+10;
+  ctx.save();ctx.translate(-cx|0,-cy|0);
 
-  for(let y=0;y<mapH;y++)for(let x=0;x<mapW;x++){
-    const t=map[y][x],px=x*TILE,py=y*TILE;
-    if(t===0)drawGrass(px,py,x,y,false);
-    else if(t===6)drawGrass(px,py,x,y,true);
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++){
+    const t=map[y][x],px=x*T,py=y*T;
+    if(t===0)drawGrass(px,py,x,y);
     else if(t===1)drawPath(px,py,x,y);
-    else if(t===3)drawWater(px,py);
-    else if(t===2){ctx.fillStyle='#5a4030';ctx.fillRect(px,py,TILE,TILE)}
-    else if(t===4)drawGrass(px,py,x,y,true);
+    else if(t===2)rect(px,py,T,T,'#5a4030');
+    else if(t===4)drawGrass(px,py,x,y);
   }
-  // trees on border
-  for(let y=0;y<mapH;y++)for(let x=0;x<mapW;x++)if(map[y][x]===4)drawTree(x*TILE,y*TILE);
-
-  buildings.forEach(drawBuilding);
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++)if(map[y][x]===4)drawTree(x*T,y*T);
+  buildings.forEach(drawHouse);
   props.forEach(p=>{
     if(p.t==='stall')drawStall(p.x,p.y);
-    else if(p.t==='cart')drawCart(p.x,p.y);
-    else if(p.t==='barrel')drawBarrel(p.x,p.y);
     else if(p.t==='well')drawWell(p.x,p.y);
+    else if(p.t==='barrel')drawBarrel(p.x,p.y);
     else if(p.t==='lamp')drawLamp(p.x,p.y);
     else if(p.t==='bush')drawBush(p.x,p.y);
-    else if(p.t==='flower')drawFlower(p.x,p.y);
-    else if(p.t==='crate'){ctx.fillStyle='#6b4423';ctx.fillRect(p.x,p.y,18,16);ctx.fillStyle='#8b5a2b';ctx.fillRect(p.x+2,p.y+2,14,12)}
   });
-
   npcs.forEach(drawNPC);
   items.forEach(drawItem);
-  for(const p of particles){ctx.globalAlpha=Math.max(0,p.life);ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.size*p.life,0,Math.PI*2);ctx.fill()}
-  ctx.globalAlpha=1;
   drawPlayer(player.x,player.y);
   ctx.restore();
-
-  if(near&&gameStarted&&!inDialog){ctx.fillStyle='rgba(251,191,36,.95)';ctx.font='bold 12px sans-serif';ctx.textAlign='center';ctx.fillText('●  Naciśnij AKCJA  ●',canvas.width/2,canvas.height-10)}
+  if(near&&started&&!dialog){ctx.fillStyle='#fbbf24';ctx.font='bold 12px sans-serif';ctx.textAlign='center';ctx.fillText('AKCJA',canvas.width/2,canvas.height-8)}
 }
 
 let last=performance.now();
-function loop(now){const dt=Math.min(now-last,40);last=now;update(dt);draw();requestAnimationFrame(loop)}
+function loop(n){const dt=Math.min(n-last,40);last=n;update(dt);draw();requestAnimationFrame(loop)}
 requestAnimationFrame(loop);
 </script>
 </body>
