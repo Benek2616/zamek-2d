@@ -1,21 +1,14 @@
-# 🏰 Zamek 2D – Przygoda
+# 🏰 Zamek 2D
 
-Ulepszona 2D przygodówka na telefon z **joystickiem** i lepszą grafiką.
+2D przygodówka na telefon z joystickiem i ulepszoną grafiką.
 
 ## Sterowanie
-- **Joystick** (lewy dolny róg) – chodzenie w dowolnym kierunku
-- **Żółty przycisk AKCJA** – podnoszenie przedmiotów i otwieranie drzwi
-- Na komputerze: WASD / strzałki + Spacja lub E
+- **Joystick** – chodzenie
+- **AKCJA** – podnoszenie / otwieranie drzwi
 
-## Cel
-Znajdź **srebrny klucz**, **latarnię** i **magiczny amulet**.
+## Zagraj
+https://htmlpreview.github.io/?https://github.com/Benek2616/zamek-2d/blob/main/index.html
 
-## Zagraj od razu
-
-**https://htmlpreview.github.io/?https://github.com/Benek2616/zamek-2d/blob/main/index.html**
-
-lub
-
-**https://raw.githack.com/Benek2616/zamek-2d/main/index.html**
+https://raw.githack.com/Benek2616/zamek-2d/main/index.html
 
 Repo: https://github.com/Benek2616/zamek-2d
