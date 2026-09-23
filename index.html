@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Zamek 2D – Przygoda</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; touch-action: none; }
+        body {
+            background: #0d0d1a;
+            color: #eee;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #wrapper {
+            width: 100%;
+            max-width: 480px;
+            height: 100%;
+            max-height: 850px;
+            position: relative;
+            background: #111;
+            display: flex;
+            flex-direction: column;
+        }
+        #ui-top {
+            background: linear-gradient(135deg, #1a1a3e, #2d1b4e);
+            padding: 10px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e94560;
+            z-index: 10;
+        }
+        #ui-top h1 { font-size: 16px; }
+        #inventory {
+            font-size: 13px;
+            background: rgba(0,0,0,0.4);
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+        #message {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.75);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            max-width: 90%;
+            text-align: center;
+            z-index: 20;
+            display: none;
+            pointer-events: none;
+        }
+        canvas {
+            display: block;
+            width: 100%;
+            flex: 1;
+            background: #1a1a2e;
+            image-rendering: pixelated;
+        }
+        #controls {
+            background: #0f0f23;
+            padding: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px solid #333;
+            min-height: 130px;
+        }
+        .dpad {
+            display: grid;
+            grid-template-areas:
+                ". up ."
+                "left . right"
+                ". down .";
+            gap: 6px;
+        }
+        .dpad button {
+            width: 54px;
+            height: 54px;
+            border: none;
+            border-radius: 12px;
+            background: #2a2a4a;
+            color: #fff;
+            font-size: 22px;
+            font-weight: bold;
+            box-shadow: 0 4px 0 #1a1a30;
+        }
+        .dpad button:active, .dpad button.active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #1a1a30;
+            background: #e94560;
+        }
+        .up { grid-area: up; }
+        .down { grid-area: down; }
+        .left { grid-area: left; }
+        .right { grid-area: right; }
+        #actionBtn {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #e94560, #c23a51);
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            box-shadow: 0 5px 0 #8b2a3a;
+        }
+        #actionBtn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #8b2a3a;
+        }
+        #startScreen, #winScreen {
+            position: absolute;
+            inset: 0;
+            background: rgba(10,10,30,0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+            padding: 20px;
+            text-align: center;
+        }
+        #winScreen { display: none; }
+        #startScreen h1, #winScreen h1 {
+            font-size: 26px;
+            color: #e94560;
+            margin-bottom: 12px;
+        }
+        #startScreen p, #winScreen p {
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            max-width: 320px;
+            opacity: 0.9;
+        }
+        .big-btn {
+            background: linear-gradient(135deg, #e94560, #c23a51);
+            color: white;
+            border: none;
+            padding: 14px 36px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 5px 0 #8b2a3a;
+            cursor: pointer;
+        }
+        .big-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #8b2a3a;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="ui-top">
+            <h1>🏰 Zamek 2D</h1>
+            <div id="inventory">Ekwipunek: pusty</div>
+        </div>
+        <div id="message"></div>
+        <canvas id="game"></canvas>
+        <div id="controls">
+            <div class="dpad">
+                <button class="up" data-dir="up">▲</button>
+                <button class="left" data-dir="left">◀</button>
+                <button class="right" data-dir="right">▶</button>
+                <button class="down" data-dir="down">▼</button>
+            </div>
+            <button id="actionBtn">AKCJA</button>
+        </div>
+
+        <div id="startScreen">
+            <h1>🏰 Zamek 2D</h1>
+            <p>Chodź po starym zamku, zbieraj przedmioty i znajdź magiczny amulet.<br><br>
+            Sterowanie: strzałki na dole + przycisk <b>AKCJA</b> gdy jesteś blisko przedmiotu.</p>
+            <button class="big-btn" id="startBtn">Wejdź do zamku</button>
+        </div>
+
+        <div id="winScreen">
+            <h1>🏆 Znalazłeś amulet!</h1>
+            <p>Gratulacje! Udało Ci się zdobyć magiczny amulet i uciec z zamku.</p>
+            <button class="big-btn" id="restartBtn">Zagraj jeszcze raz</button>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('game');
+        const ctx = canvas.getContext('2d');
+        const invEl = document.getElementById('inventory');
+        const msgEl = document.getElementById('message');
+
+        // Resize
+        function resize() {
+            const wrapper = document.getElementById('wrapper');
+            const topH = document.getElementById('ui-top').offsetHeight;
+            const ctrlH = document.getElementById('controls').offsetHeight;
+            canvas.width = wrapper.clientWidth;
+            canvas.height = wrapper.clientHeight - topH - ctrlH;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Game constants
+        const TILE = 40;
+        const PLAYER_SPEED = 2.8;
+
+        // Map (0 = floor, 1 = wall, 2 = door locked, 3 = door open, 4 = dark floor)
+        // Simple 15x12 map
+        const mapW = 15;
+        const mapH = 12;
+        let map = [
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,0,0,0,0,0,0,1,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,1,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,2,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,1,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,1,0,0,0,0,0,0,1],
+            [1,1,1,1,0,1,1,1,1,1,0,1,1,1,1],
+            [1,0,0,0,0,0,0,1,4,4,4,4,4,0,1],
+            [1,0,0,0,0,0,0,1,4,4,4,4,4,0,1],
+            [1,0,0,0,0,0,0,2,4,4,4,4,4,0,1],
+            [1,0,0,0,0,0,0,1,4,4,4,4,4,0,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+        ];
+
+        // Player
+        let player = {
+            x: 3 * TILE + 8,
+            y: 3 * TILE + 8,
+            w: 24,
+            h: 24,
+            dir: 'down'
+        };
+
+        // Items on map
+        let items = [
+            { id: 'key', x: 11 * TILE + 8, y: 2 * TILE + 8, w: 24, h: 24, name: 'Srebrny klucz', taken: false },
+            { id: 'lantern', x: 2 * TILE + 8, y: 8 * TILE + 8, w: 24, h: 24, name: 'Latarnia', taken: false },
+            { id: 'amulet', x: 11 * TILE + 8, y: 9 * TILE + 8, w: 24, h: 24, name: 'Magiczny amulet', taken: false, requires: ['key', 'lantern'] }
+        ];
+
+        let inventory = [];
+        let keys = { up: false, down: false, left: false, right: false };
+        let gameStarted = false;
+        let messageTimer = 0;
+
+        // Controls
+        document.querySelectorAll('.dpad button').forEach(btn => {
+            const dir = btn.dataset.dir;
+            const set = (v) => {
+                keys[dir] = v;
+                btn.classList.toggle('active', v);
+            };
+            btn.addEventListener('touchstart', e => { e.preventDefault(); set(true); }, {passive:false});
+            btn.addEventListener('touchend', e => { e.preventDefault(); set(false); }, {passive:false});
+            btn.addEventListener('touchcancel', () => set(false));
+            btn.addEventListener('mousedown', () => set(true));
+            btn.addEventListener('mouseup', () => set(false));
+            btn.addEventListener('mouseleave', () => set(false));
+        });
+
+        // Keyboard
+        window.addEventListener('keydown', e => {
+            if (e.code === 'ArrowUp' || e.code === 'KeyW') keys.up = true;
+            if (e.code === 'ArrowDown' || e.code === 'KeyS') keys.down = true;
+            if (e.code === 'ArrowLeft' || e.code === 'KeyA') keys.left = true;
+            if (e.code === 'ArrowRight' || e.code === 'KeyD') keys.right = true;
+            if (e.code === 'Space' || e.code === 'KeyE') doAction();
+        });
+        window.addEventListener('keyup', e => {
+            if (e.code === 'ArrowUp' || e.code === 'KeyW') keys.up = false;
+            if (e.code === 'ArrowDown' || e.code === 'KeyS') keys.down = false;
+            if (e.code === 'ArrowLeft' || e.code === 'KeyA') keys.left = false;
+            if (e.code === 'ArrowRight' || e.code === 'KeyD') keys.right = false;
+        });
+
+        document.getElementById('actionBtn').addEventListener('touchstart', e => {
+            e.preventDefault();
+            doAction();
+        }, {passive:false});
+        document.getElementById('actionBtn').addEventListener('click', doAction);
+
+        document.getElementById('startBtn').onclick = () => {
+            document.getElementById('startScreen').style.display = 'none';
+            gameStarted = true;
+            showMsg('Znajdź klucz, latarnię i amulet!');
+        };
+        document.getElementById('restartBtn').onclick = () => location.reload();
+
+        function showMsg(text, time = 2500) {
+            msgEl.textContent = text;
+            msgEl.style.display = 'block';
+            messageTimer = time;
+        }
+
+        function updateInventory() {
+            invEl.textContent = 'Ekwipunek: ' + (inventory.length ? inventory.map(i => i.name).join(', ') : 'pusty');
+        }
+
+        function canWalk(px, py) {
+            // Check 4 corners of player
+            const points = [
+                [px + 4, py + 4],
+                [px + player.w - 4, py + 4],
+                [px + 4, py + player.h - 4],
+                [px + player.w - 4, py + player.h - 4]
+            ];
+            for (let [x, y] of points) {
+                const tx = Math.floor(x / TILE);
+                const ty = Math.floor(y / TILE);
+                if (tx < 0 || ty < 0 || tx >= mapW || ty >= mapH) return false;
+                const tile = map[ty][tx];
+                if (tile === 1) return false; // wall
+                if (tile === 2) return false; // locked door
+            }
+            return true;
+        }
+
+        function isNear(obj, dist = 36) {
+            const dx = (player.x + player.w/2) - (obj.x + obj.w/2);
+            const dy = (player.y + player.h/2) - (obj.y + obj.h/2);
+            return Math.sqrt(dx*dx + dy*dy) < dist;
+        }
+
+        function doAction() {
+            if (!gameStarted) return;
+
+            // Check doors
+            // Find locked doors near player
+            for (let y = 0; y < mapH; y++) {
+                for (let x = 0; x < mapW; x++) {
+                    if (map[y][x] === 2) {
+                        const doorX = x * TILE + TILE/2;
+                        const doorY = y * TILE + TILE/2;
+                        const dx = (player.x + player.w/2) - doorX;
+                        const dy = (player.y + player.h/2) - doorY;
+                        if (Math.sqrt(dx*dx + dy*dy) < 50) {
+                            if (inventory.find(i => i.id === 'key')) {
+                                map[y][x] = 3; // open
+                                showMsg('Drzwi otwarte kluczem!');
+                                return;
+                            } else {
+                                showMsg('Drzwi są zamknięte. Potrzebujesz klucza.');
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Check items
+            for (let item of items) {
+                if (item.taken) continue;
+                if (isNear(item)) {
+                    if (item.requires) {
+                        const hasAll = item.requires.every(r => inventory.find(i => i.id === r));
+                        if (!hasAll) {
+                            showMsg('Potrzebujesz klucza i latarni, żeby wziąć amulet!');
+                            return;
+                        }
+                    }
+                    item.taken = true;
+                    inventory.push(item);
+                    updateInventory();
+                    showMsg('Podniosłeś: ' + item.name);
+
+                    if (item.id === 'amulet') {
+                        setTimeout(() => {
+                            document.getElementById('winScreen').style.display = 'flex';
+                        }, 800);
+                    }
+                    return;
+                }
+            }
+
+            showMsg('Nic tu nie ma...');
+        }
+
+        function update(dt) {
+            if (!gameStarted) return;
+
+            let dx = 0, dy = 0;
+            if (keys.up) { dy = -PLAYER_SPEED; player.dir = 'up'; }
+            if (keys.down) { dy = PLAYER_SPEED; player.dir = 'down'; }
+            if (keys.left) { dx = -PLAYER_SPEED; player.dir = 'left'; }
+            if (keys.right) { dx = PLAYER_SPEED; player.dir = 'right'; }
+
+            // Normalize diagonal
+            if (dx !== 0 && dy !== 0) {
+                dx *= 0.707;
+                dy *= 0.707;
+            }
+
+            // Move with collision
+            if (dx !== 0 && canWalk(player.x + dx, player.y)) player.x += dx;
+            if (dy !== 0 && canWalk(player.x, player.y + dy)) player.y += dy;
+
+            // Keep in bounds roughly
+            player.x = Math.max(4, Math.min(player.x, mapW * TILE - player.w - 4));
+            player.y = Math.max(4, Math.min(player.y, mapH * TILE - player.h - 4));
+
+            if (messageTimer > 0) {
+                messageTimer -= dt;
+                if (messageTimer <= 0) msgEl.style.display = 'none';
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Camera follows player
+            const camX = player.x - canvas.width / 2 + player.w / 2;
+            const camY = player.y - canvas.height / 2 + player.h / 2;
+
+            ctx.save();
+            ctx.translate(-camX, -camY);
+
+            // Draw map
+            for (let y = 0; y < mapH; y++) {
+                for (let x = 0; x < mapW; x++) {
+                    const tile = map[y][x];
+                    const px = x * TILE;
+                    const py = y * TILE;
+
+                    if (tile === 1) {
+                        // Wall
+                        ctx.fillStyle = '#3d2b5a';
+                        ctx.fillRect(px, py, TILE, TILE);
+                        ctx.fillStyle = '#2a1a40';
+                        ctx.fillRect(px + 3, py + 3, TILE - 6, TILE - 6);
+                    } else if (tile === 2) {
+                        // Locked door
+                        ctx.fillStyle = '#5c3317';
+                        ctx.fillRect(px, py, TILE, TILE);
+                        ctx.fillStyle = '#8b4513';
+                        ctx.fillRect(px + 8, py + 4, TILE - 16, TILE - 8);
+                        ctx.fillStyle = '#ffd700';
+                        ctx.beginPath();
+                        ctx.arc(px + TILE - 14, py + TILE/2, 4, 0, Math.PI*2);
+                        ctx.fill();
+                    } else if (tile === 3) {
+                        // Open door
+                        ctx.fillStyle = '#2a1a40';
+                        ctx.fillRect(px, py, TILE, TILE);
+                        ctx.fillStyle = '#1a1025';
+                        ctx.fillRect(px + 6, py, TILE - 12, TILE);
+                    } else if (tile === 4) {
+                        // Dark floor
+                        ctx.fillStyle = '#1a1525';
+                        ctx.fillRect(px, py, TILE, TILE);
+                    } else {
+                        // Floor
+                        ctx.fillStyle = '#2a2540';
+                        ctx.fillRect(px, py, TILE, TILE);
+                        // subtle pattern
+                        ctx.fillStyle = '#322a4a';
+                        if ((x + y) % 2 === 0) ctx.fillRect(px + 2, py + 2, TILE - 4, TILE - 4);
+                    }
+                }
+            }
+
+            // Draw items
+            items.forEach(item => {
+                if (item.taken) return;
+                const px = item.x;
+                const py = item.y;
+
+                if (item.id === 'key') {
+                    ctx.fillStyle = '#ffd700';
+                    ctx.fillRect(px + 6, py + 4, 12, 6);
+                    ctx.beginPath();
+                    ctx.arc(px + 6, py + 7, 7, 0, Math.PI*2);
+                    ctx.fill();
+                    ctx.fillStyle = '#1a1a2e';
+                    ctx.beginPath();
+                    ctx.arc(px + 6, py + 7, 3, 0, Math.PI*2);
+                    ctx.fill();
+                } else if (item.id === 'lantern') {
+                    ctx.fillStyle = '#c0c0c0';
+                    ctx.fillRect(px + 8, py + 2, 8, 6);
+                    ctx.fillStyle = '#f1c40f';
+                    ctx.beginPath();
+                    ctx.arc(px + 12, py + 16, 9, 0, Math.PI*2);
+                    ctx.fill();
+                    ctx.fillStyle = '#e67e22';
+                    ctx.beginPath();
+                    ctx.arc(px + 12, py + 16, 5, 0, Math.PI*2);
+                    ctx.fill();
+                } else if (item.id === 'amulet') {
+                    ctx.fillStyle = '#9b59b6';
+                    ctx.beginPath();
+                    ctx.arc(px + 12, py + 12, 11, 0, Math.PI*2);
+                    ctx.fill();
+                    ctx.fillStyle = '#e74c3c';
+                    ctx.beginPath();
+                    ctx.arc(px + 12, py + 12, 5, 0, Math.PI*2);
+                    ctx.fill();
+                    // glow
+                    ctx.strokeStyle = 'rgba(155,89,182,0.5)';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.arc(px + 12, py + 12, 14, 0, Math.PI*2);
+                    ctx.stroke();
+                }
+            });
+
+            // Draw player
+            const px = player.x;
+            const py = player.y;
+
+            // body
+            ctx.fillStyle = '#3498db';
+            ctx.fillRect(px + 2, py + 6, 20, 16);
+            // head
+            ctx.fillStyle = '#f5d0a9';
+            ctx.beginPath();
+            ctx.arc(px + 12, py + 8, 8, 0, Math.PI*2);
+            ctx.fill();
+            // eyes
+            ctx.fillStyle = '#222';
+            if (player.dir === 'left') {
+                ctx.fillRect(px + 5, py + 6, 3, 3);
+            } else if (player.dir === 'right') {
+                ctx.fillRect(px + 16, py + 6, 3, 3);
+            } else {
+                ctx.fillRect(px + 7, py + 6, 3, 3);
+                ctx.fillRect(px + 14, py + 6, 3, 3);
+            }
+
+            ctx.restore();
+
+            // Mini hint at bottom of canvas if near something
+            let nearSomething = false;
+            items.forEach(item => {
+                if (!item.taken && isNear(item)) nearSomething = true;
+            });
+            // check doors
+            for (let y = 0; y < mapH; y++) {
+                for (let x = 0; x < mapW; x++) {
+                    if (map[y][x] === 2) {
+                        const doorX = x * TILE + TILE/2;
+                        const doorY = y * TILE + TILE/2;
+                        const dx = (player.x + player.w/2) - doorX;
+                        const dy = (player.y + player.h/2) - doorY;
+                        if (Math.sqrt(dx*dx + dy*dy) < 50) nearSomething = true;
+                    }
+                }
+            }
+            if (nearSomething && gameStarted) {
+                ctx.fillStyle = 'rgba(233,69,96,0.85)';
+                ctx.font = 'bold 14px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('Naciśnij AKCJA', canvas.width / 2, canvas.height - 12);
+            }
+        }
+
+        let lastTime = performance.now();
+        function loop(now) {
+            const dt = now - lastTime;
+            lastTime = now;
+            update(dt);
+            draw();
+            requestAnimationFrame(loop);
+        }
+        requestAnimationFrame(loop);
+    </script>
+</body>
+</html>
