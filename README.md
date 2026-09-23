@@ -1,10 +1,12 @@
-# 🏰 Zamek 2D
+# 🏰 Zamek 2D – duża mapa
 
-2D przygodówka na telefon z joystickiem i ulepszoną grafiką.
+Przygodówka 2D na telefon z rozbudowanym zamkiem.
 
-## Sterowanie
-- **Joystick** – chodzenie
-- **AKCJA** – podnoszenie / otwieranie drzwi
+## Co jest w grze
+- Duża mapa (kilka sal + lochy + wielka sala)
+- Pochodnie, regały, stoły, beczki, posągi, banery, tron, okna
+- Klucz, latarnia, amulet
+- Joystick + przycisk AKCJA
 
 ## Zagraj
 https://htmlpreview.github.io/?https://github.com/Benek2616/zamek-2d/blob/main/index.html
