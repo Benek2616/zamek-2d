@@ -7,24 +7,24 @@
 <title>Zamek 2D</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;touch-action:none;user-select:none}
-html,body{width:100%;height:100%;overflow:hidden;background:#06050e;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#eee}
-#wrapper{width:100%;height:100%;max-width:540px;margin:0 auto;position:relative;display:flex;flex-direction:column;background:#090816}
-#ui-top{flex-shrink:0;background:linear-gradient(180deg,#1a1530,#0e0c1a);padding:9px 12px 7px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #c43c55;z-index:10}
+html,body{width:100%;height:100%;overflow:hidden;background:#05040c;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#eee}
+#wrapper{width:100%;height:100%;max-width:540px;margin:0 auto;position:relative;display:flex;flex-direction:column;background:#080714}
+#ui-top{flex-shrink:0;background:linear-gradient(180deg,#16122a,#0c0a18);padding:9px 12px 7px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #b8324a;z-index:10}
 #ui-top h1{font-size:14px;font-weight:700}
 #inventory{font-size:11px;background:rgba(0,0,0,.55);padding:4px 10px;border-radius:16px;max-width:60%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#message{position:absolute;top:48px;left:50%;transform:translateX(-50%);background:rgba(10,6,20,.93);color:#fff;padding:9px 16px;border-radius:11px;font-size:13px;max-width:92%;text-align:center;z-index:30;display:none;pointer-events:none;border:1px solid rgba(196,60,85,.4);box-shadow:0 6px 20px rgba(0,0,0,.5)}
-#game{flex:1;width:100%;display:block;background:#0c0a16}
-#controls{flex-shrink:0;background:linear-gradient(0deg,#06050e,#0e0c1a);padding:8px 14px 16px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #1a1630;min-height:130px}
+#message{position:absolute;top:48px;left:50%;transform:translateX(-50%);background:rgba(8,5,18,.94);color:#fff;padding:9px 16px;border-radius:11px;font-size:13px;max-width:92%;text-align:center;z-index:30;display:none;pointer-events:none;border:1px solid rgba(184,50,74,.45);box-shadow:0 6px 20px rgba(0,0,0,.55)}
+#game{flex:1;width:100%;display:block;background:#0a0814}
+#controls{flex-shrink:0;background:linear-gradient(0deg,#05040c,#0c0a18);padding:8px 14px 16px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #16122a;min-height:130px}
 #joystick-zone{width:118px;height:118px;position:relative}
-#joystick-base{width:108px;height:108px;border-radius:50%;background:rgba(28,24,50,.8);border:3px solid rgba(85,75,130,.4);position:absolute;top:5px;left:5px;box-shadow:inset 0 0 18px rgba(0,0,0,.45)}
-#joystick-knob{width:48px;height:48px;border-radius:50%;background:linear-gradient(145deg,#e94560,#b8324a);border:3px solid rgba(255,255,255,.18);position:absolute;top:35px;left:35px;box-shadow:0 4px 14px rgba(233,69,96,.4)}
-#actionBtn{width:74px;height:74px;border-radius:50%;border:none;background:linear-gradient(145deg,#f0c414,#d4880e);color:#1a1200;font-size:12px;font-weight:800;box-shadow:0 5px 0 #a36b00,0 8px 20px rgba(240,196,15,.3)}
-#actionBtn:active{transform:translateY(3px);box-shadow:0 2px 0 #a36b00}
+#joystick-base{width:108px;height:108px;border-radius:50%;background:rgba(24,20,45,.85);border:3px solid rgba(80,70,120,.4);position:absolute;top:5px;left:5px;box-shadow:inset 0 0 20px rgba(0,0,0,.5)}
+#joystick-knob{width:48px;height:48px;border-radius:50%;background:linear-gradient(145deg,#e94560,#b02840);border:3px solid rgba(255,255,255,.15);position:absolute;top:35px;left:35px;box-shadow:0 4px 14px rgba(233,69,96,.45)}
+#actionBtn{width:74px;height:74px;border-radius:50%;border:none;background:linear-gradient(145deg,#f0c414,#c97a0a);color:#1a1000;font-size:12px;font-weight:800;box-shadow:0 5px 0 #9a6500,0 8px 20px rgba(240,196,15,.3)}
+#actionBtn:active{transform:translateY(3px);box-shadow:0 2px 0 #9a6500}
 #actionBtn.near{animation:pulse 1s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 5px 0 #a36b00,0 8px 20px rgba(240,196,15,.3)}50%{box-shadow:0 5px 0 #a36b00,0 8px 28px rgba(240,196,15,.7)}}
-#startScreen,#winScreen{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 35%,#1a1430 0%,#06050e 70%);display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:100;padding:20px;text-align:center}
+@keyframes pulse{0%,100%{box-shadow:0 5px 0 #9a6500,0 8px 20px rgba(240,196,15,.3)}50%{box-shadow:0 5px 0 #9a6500,0 8px 28px rgba(240,196,15,.75)}}
+#startScreen,#winScreen{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 35%,#16102a 0%,#05040c 70%);display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:100;padding:20px;text-align:center}
 #winScreen{display:none}
-#startScreen h1,#winScreen h1{font-size:26px;color:#e94560;margin-bottom:8px;text-shadow:0 0 20px rgba(233,69,96,.5)}
+#startScreen h1,#winScreen h1{font-size:26px;color:#e94560;margin-bottom:8px;text-shadow:0 0 22px rgba(233,69,96,.55)}
 #startScreen p,#winScreen p{font-size:14px;line-height:1.5;margin-bottom:20px;max-width:290px;opacity:.9}
 .big-btn{background:linear-gradient(145deg,#e94560,#c23a51);color:#fff;border:none;padding:14px 36px;font-size:16px;font-weight:700;border-radius:50px;box-shadow:0 5px 0 #8b2a3a,0 8px 22px rgba(233,69,96,.3);cursor:pointer}
 .big-btn:active{transform:translateY(3px);box-shadow:0 2px 0 #8b2a3a}
@@ -41,12 +41,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:#06050e;font-family:
 </div>
 <div id="startScreen">
 <h1>🏰 Zamek 2D</h1>
-<p>Duży zamek z wieloma salami. Znajdź klucz, latarnię i magiczny amulet.<br><br>Joystick = ruch • AKCJA = interakcja</p>
+<p>Duży zamek. Znajdź klucz, latarnię i magiczny amulet.<br><br>Joystick = ruch • AKCJA = interakcja</p>
 <button class="big-btn" id="startBtn">Wejdź do zamku</button>
 </div>
 <div id="winScreen">
 <h1>🏆 Znalazłeś amulet!</h1>
-<p>Przeszedłeś cały zamek i zdobyłeś skarb. Gratulacje!</p>
+<p>Przeszedłeś zamek i zdobyłeś skarb!</p>
 <button class="big-btn" id="restartBtn">Zagraj jeszcze raz</button>
 </div>
 </div>
@@ -58,10 +58,9 @@ const actionBtn=document.getElementById('actionBtn'),knob=document.getElementByI
 function resize(){const w=document.getElementById('wrapper');const t=document.getElementById('ui-top').offsetHeight,c=document.getElementById('controls').offsetHeight;canvas.width=w.clientWidth;canvas.height=Math.max(180,w.clientHeight-t-c)}
 window.addEventListener('resize',resize);resize();
 
-const TILE=44,SPEED=3.1;
+const TILE=48,SPEED=3.2;
 const mapW=24,mapH=20;
 
-// 0 floor, 1 wall, 2 locked door, 3 open door, 4 dark floor, 5 water/pit, 6 carpet
 let map=[
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 [1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1],
@@ -85,49 +84,46 @@ let map=[
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ];
 
-// props: torches, rugs, pillars, tables, bookshelves, statues, banners, barrels, windows
 const props=[
-  // Entrance hall torches
-  {t:'torch',x:1.4*TILE,y:1.2*TILE},{t:'torch',x:7.6*TILE,y:1.2*TILE},
-  {t:'torch',x:1.4*TILE,y:5.2*TILE},{t:'torch',x:7.6*TILE,y:5.2*TILE},
-  // Library
-  {t:'torch',x:10.4*TILE,y:1.2*TILE},{t:'torch',x:14.6*TILE,y:1.2*TILE},
-  {t:'shelf',x:10.3*TILE,y:2.1*TILE},{t:'shelf',x:10.3*TILE,y:4.1*TILE},
-  {t:'shelf',x:14.5*TILE,y:2.1*TILE},{t:'table',x:12*TILE,y:3.2*TILE},
-  // Right room (armory-ish)
-  {t:'torch',x:17.4*TILE,y:1.2*TILE},{t:'torch',x:21.6*TILE,y:1.2*TILE},
-  {t:'barrel',x:18*TILE,y:2.3*TILE},{t:'barrel',x:20.5*TILE,y:2.3*TILE},
-  {t:'statue',x:19.3*TILE,y:4*TILE},
-  // Corridor / middle
-  {t:'torch',x:10.4*TILE,y:8.2*TILE},{t:'torch',x:14.6*TILE,y:8.2*TILE},
-  {t:'banner',x:11.2*TILE,y:7.15*TILE},{t:'banner',x:13.5*TILE,y:7.15*TILE},
-  // Dungeon area
-  {t:'torch',x:17.4*TILE,y:8.2*TILE},{t:'torch',x:21.6*TILE,y:8.2*TILE},
-  {t:'torch',x:17.4*TILE,y:12.2*TILE},
-  // Bottom great hall
-  {t:'torch',x:2*TILE,y:14.2*TILE},{t:'torch',x:6*TILE,y:14.2*TILE},
-  {t:'torch',x:10*TILE,y:14.2*TILE},{t:'torch',x:14*TILE,y:14.2*TILE},
-  {t:'torch',x:18*TILE,y:14.2*TILE},{t:'torch',x:21.5*TILE,y:14.2*TILE},
-  {t:'rug',x:9*TILE,y:16*TILE,w:5*TILE,h:2.2*TILE},
-  {t:'pillar',x:4*TILE,y:15.3*TILE},{t:'pillar',x:8*TILE,y:15.3*TILE},
-  {t:'pillar',x:15*TILE,y:15.3*TILE},{t:'pillar',x:19*TILE,y:15.3*TILE},
-  {t:'throne',x:11.2*TILE,y:17.2*TILE},
-  // Left side room decorations
-  {t:'chest',x:2.2*TILE,y:3.2*TILE},{t:'barrel',x:6.5*TILE,y:2.2*TILE},
-  {t:'window',x:3*TILE,y:0.15*TILE},{t:'window',x:6*TILE,y:0.15*TILE},
-  {t:'window',x:12*TILE,y:0.15*TILE},{t:'window',x:19*TILE,y:0.15*TILE}
+  {t:'torch',x:1.5*TILE,y:1.15*TILE},{t:'torch',x:7.5*TILE,y:1.15*TILE},
+  {t:'torch',x:1.5*TILE,y:5.15*TILE},{t:'torch',x:7.5*TILE,y:5.15*TILE},
+  {t:'torch',x:10.5*TILE,y:1.15*TILE},{t:'torch',x:14.5*TILE,y:1.15*TILE},
+  {t:'shelf',x:10.2*TILE,y:2.0*TILE},{t:'shelf',x:10.2*TILE,y:4.0*TILE},
+  {t:'shelf',x:14.3*TILE,y:2.0*TILE},{t:'table',x:12*TILE,y:3.1*TILE},
+  {t:'torch',x:17.5*TILE,y:1.15*TILE},{t:'torch',x:21.5*TILE,y:1.15*TILE},
+  {t:'barrel',x:18*TILE,y:2.2*TILE},{t:'barrel',x:20.5*TILE,y:2.2*TILE},
+  {t:'statue',x:19.2*TILE,y:3.8*TILE},
+  {t:'torch',x:10.5*TILE,y:8.15*TILE},{t:'torch',x:14.5*TILE,y:8.15*TILE},
+  {t:'banner',x:11.1*TILE,y:7.1*TILE},{t:'banner',x:13.4*TILE,y:7.1*TILE},
+  {t:'torch',x:17.5*TILE,y:8.15*TILE},{t:'torch',x:21.5*TILE,y:8.15*TILE},
+  {t:'torch',x:17.5*TILE,y:12.15*TILE},
+  {t:'torch',x:2*TILE,y:14.15*TILE},{t:'torch',x:6*TILE,y:14.15*TILE},
+  {t:'torch',x:10*TILE,y:14.15*TILE},{t:'torch',x:14*TILE,y:14.15*TILE},
+  {t:'torch',x:18*TILE,y:14.15*TILE},{t:'torch',x:21.5*TILE,y:14.15*TILE},
+  {t:'rug',x:9*TILE,y:15.8*TILE,w:5*TILE,h:2.3*TILE},
+  {t:'pillar',x:4*TILE,y:15.2*TILE},{t:'pillar',x:8*TILE,y:15.2*TILE},
+  {t:'pillar',x:15*TILE,y:15.2*TILE},{t:'pillar',x:19*TILE,y:15.2*TILE},
+  {t:'throne',x:11.1*TILE,y:17.1*TILE},
+  {t:'chest',x:2.1*TILE,y:3.1*TILE},{t:'barrel',x:6.4*TILE,y:2.1*TILE},
+  {t:'window',x:3*TILE,y:0.12*TILE},{t:'window',x:6*TILE,y:0.12*TILE},
+  {t:'window',x:12*TILE,y:0.12*TILE},{t:'window',x:19*TILE,y:0.12*TILE}
 ];
 
-let player={x:4*TILE,y:3*TILE,w:24,h:28,dir:'down',frame:0,walking:false};
+let player={x:4*TILE,y:3*TILE,w:26,h:30,dir:'down',frame:0,walking:false};
 let items=[
-  {id:'key',x:19.2*TILE,y:3.5*TILE,w:20,h:20,name:'Srebrny klucz',taken:false},
-  {id:'lantern',x:2.3*TILE,y:10.5*TILE,w:20,h:20,name:'Latarnia',taken:false},
-  {id:'amulet',x:19.2*TILE,y:10.5*TILE,w:24,h:24,name:'Magiczny amulet',taken:false,requires:['key','lantern']}
+  {id:'key',x:19.15*TILE,y:3.4*TILE,w:22,h:22,name:'Srebrny klucz',taken:false},
+  {id:'lantern',x:2.2*TILE,y:10.4*TILE,w:22,h:22,name:'Latarnia',taken:false},
+  {id:'amulet',x:19.15*TILE,y:10.4*TILE,w:26,h:26,name:'Magiczny amulet',taken:false,requires:['key','lantern']}
 ];
 let inventory=[],particles=[];
 let joy={active:false,dx:0,dy:0,maxR:38};
 let keys={up:0,down:0,left:0,right:0};
 let gameStarted=false,messageTimer=0,time=0,near=false;
+
+// precomputed light positions from torches
+function getTorchLights(){
+  return props.filter(p=>p.t==='torch').map(p=>({x:p.x,y:p.y+4}));
+}
 
 function jStart(e){e.preventDefault();joy.active=true;jMove(e)}
 function jMove(e){if(!joy.active)return;e.preventDefault();const t=e.touches?e.touches[0]:e;const r=joyZone.getBoundingClientRect();let dx=t.clientX-(r.left+r.width/2),dy=t.clientY-(r.top+r.height/2);const d=Math.hypot(dx,dy);if(d>joy.maxR){dx=dx/d*joy.maxR;dy=dy/d*joy.maxR}joy.dx=dx/joy.maxR;joy.dy=dy/joy.maxR;knob.style.transform=`translate(${dx}px,${dy}px)`}
@@ -155,36 +151,36 @@ window.addEventListener('keyup',e=>{
 });
 actionBtn.addEventListener('touchstart',e=>{e.preventDefault();doAction()},{passive:false});
 actionBtn.addEventListener('click',doAction);
-document.getElementById('startBtn').onclick=()=>{document.getElementById('startScreen').style.display='none';gameStarted=true;showMsg('Przeszukaj zamek: klucz, latarnia, amulet')};
+document.getElementById('startBtn').onclick=()=>{document.getElementById('startScreen').style.display='none';gameStarted=true;showMsg('Znajdź klucz, latarnię i amulet')};
 document.getElementById('restartBtn').onclick=()=>location.reload();
 
 function showMsg(t,ms=2600){msgEl.textContent=t;msgEl.style.display='block';messageTimer=ms}
 function updateInv(){invEl.textContent='Ekwipunek: '+(inventory.length?inventory.map(i=>i.name).join(', '):'pusty')}
 
 function canWalk(px,py){
-  const pts=[[px+4,py+10],[px+player.w-4,py+10],[px+4,py+player.h-3],[px+player.w-4,py+player.h-3]];
-  for(const[x,y]of pts){const tx=Math.floor(x/TILE),ty=Math.floor(y/TILE);if(tx<0||ty<0||tx>=mapW||ty>=mapH)return false;const t=map[ty][tx];if(t===1||t===2||t===5)return false}return true
+  const pts=[[px+5,py+12],[px+player.w-5,py+12],[px+5,py+player.h-3],[px+player.w-5,py+player.h-3]];
+  for(const[x,y]of pts){const tx=Math.floor(x/TILE),ty=Math.floor(y/TILE);if(tx<0||ty<0||tx>=mapW||ty>=mapH)return false;const t=map[ty][tx];if(t===1||t===2)return false}return true
 }
-function isNear(o,d=40){return Math.hypot((player.x+player.w/2)-(o.x+o.w/2),(player.y+player.h/2)-(o.y+o.h/2))<d}
+function isNear(o,d=42){return Math.hypot((player.x+player.w/2)-(o.x+o.w/2),(player.y+player.h/2)-(o.y+o.h/2))<d}
 
 function checkNear(){
   near=false;
   for(const it of items)if(!it.taken&&isNear(it)){near=true;break}
   if(!near)for(let y=0;y<mapH;y++)for(let x=0;x<mapW;x++)if(map[y][x]===2){
-    if(Math.hypot((player.x+player.w/2)-(x*TILE+TILE/2),(player.y+player.h/2)-(y*TILE+TILE/2))<52){near=true;break}}
+    if(Math.hypot((player.x+player.w/2)-(x*TILE+TILE/2),(player.y+player.h/2)-(y*TILE+TILE/2))<54){near=true;break}}
   actionBtn.classList.toggle('near',near);
 }
 
-function spawnParticles(x,y,color,n=10){
-  for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,sp=1+Math.random()*2.2;
-    particles.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-1,life:1,color,size:2+Math.random()*2.5})}
+function spawnParticles(x,y,color,n=12){
+  for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,sp=1+Math.random()*2.4;
+    particles.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-1.2,life:1,color,size:2+Math.random()*3})}
 }
 
 function doAction(){
   if(!gameStarted)return;
   for(let y=0;y<mapH;y++)for(let x=0;x<mapW;x++)if(map[y][x]===2){
-    if(Math.hypot((player.x+player.w/2)-(x*TILE+TILE/2),(player.y+player.h/2)-(y*TILE+TILE/2))<52){
-      if(inventory.find(i=>i.id==='key')){map[y][x]=3;showMsg('🔑 Drzwi otwarte!');spawnParticles(x*TILE+TILE/2,y*TILE+TILE/2,'#f1c40f',8)}
+    if(Math.hypot((player.x+player.w/2)-(x*TILE+TILE/2),(player.y+player.h/2)-(y*TILE+TILE/2))<54){
+      if(inventory.find(i=>i.id==='key')){map[y][x]=3;showMsg('🔑 Drzwi otwarte!');spawnParticles(x*TILE+TILE/2,y*TILE+TILE/2,'#f1c40f',10)}
       else showMsg('Drzwi zamknięte — potrzebujesz klucza');
       return;
     }
@@ -194,7 +190,7 @@ function doAction(){
     if(isNear(it)){
       if(it.requires&&!it.requires.every(r=>inventory.find(i=>i.id===r))){showMsg('Potrzebujesz klucza i latarni!');return}
       it.taken=true;inventory.push(it);updateInv();
-      spawnParticles(it.x+10,it.y+10,it.id==='amulet'?'#a855f7':'#f1c40f',14);
+      spawnParticles(it.x+11,it.y+11,it.id==='amulet'?'#a855f7':'#f1c40f',16);
       showMsg('✨ '+it.name);
       if(it.id==='amulet')setTimeout(()=>document.getElementById('winScreen').style.display='flex',900);
       return;
@@ -218,144 +214,229 @@ function update(dt){
   player.y=Math.max(4,Math.min(player.y,mapH*TILE-player.h-4));
   if(player.walking)player.frame+=dt*0.014;
   checkNear();
-  for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.x+=p.vx;p.y+=p.vy;p.vy+=0.035;p.life-=dt*0.002;if(p.life<=0)particles.splice(i,1)}
+  for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.x+=p.vx;p.y+=p.vy;p.vy+=0.04;p.life-=dt*0.002;if(p.life<=0)particles.splice(i,1)}
   if(messageTimer>0){messageTimer-=dt;if(messageTimer<=0)msgEl.style.display='none'}
 }
 
-// ===== DRAW HELPERS =====
-function drawWall(px,py){
-  ctx.fillStyle='#32284c';ctx.fillRect(px,py,TILE,TILE);
-  ctx.fillStyle='#3d335c';
-  ctx.fillRect(px+2,py+2,19,18);ctx.fillRect(px+23,py+2,19,18);
-  ctx.fillRect(px+2,py+23,19,18);ctx.fillRect(px+23,py+23,19,18);
-  ctx.fillStyle='#2a2242';
-  ctx.fillRect(px+4,py+4,15,14);ctx.fillRect(px+25,py+4,15,14);
-  ctx.fillRect(px+4,py+25,15,14);ctx.fillRect(px+25,py+25,15,14);
-  ctx.fillStyle='rgba(255,255,255,.05)';ctx.fillRect(px,py,TILE,4);
+// seed for tile variation
+function hash(x,y){return ((x*374761393+y*668265263)&0x7fffffff)%1000/1000}
+
+function drawWall(px,py,tx,ty){
+  const h=hash(tx,ty);
+  // base
+  ctx.fillStyle='#2e2648';ctx.fillRect(px,py,TILE,TILE);
+  // stone blocks - 2x2 with slight color variation
+  const c1=h>0.5?'#3d3558':'#383050';
+  const c2=h>0.3?'#352d4e':'#3a3254';
+  ctx.fillStyle=c1;
+  ctx.fillRect(px+1,py+1,22,21);ctx.fillRect(px+25,py+1,22,21);
+  ctx.fillStyle=c2;
+  ctx.fillRect(px+1,py+24,22,22);ctx.fillRect(px+25,py+24,22,22);
+  // inner darker
+  ctx.fillStyle='#262040';
+  ctx.fillRect(px+3,py+3,18,17);ctx.fillRect(px+27,py+3,18,17);
+  ctx.fillRect(px+3,py+26,18,18);ctx.fillRect(px+27,py+26,18,18);
+  // highlight top edge
+  ctx.fillStyle='rgba(255,255,255,.07)';ctx.fillRect(px,py,TILE,3);
+  // mortar
+  ctx.strokeStyle='rgba(0,0,0,.35)';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(px,py+23);ctx.lineTo(px+TILE,py+23);ctx.moveTo(px+24,py);ctx.lineTo(px+24,py+23);ctx.stroke();
 }
-function drawFloor(px,py,dark){
-  if(dark){ctx.fillStyle='#100e1c';ctx.fillRect(px,py,TILE,TILE);ctx.fillStyle='#161322';ctx.fillRect(px+2,py+2,TILE-4,TILE-4)}
-  else{ctx.fillStyle='#221e3a';ctx.fillRect(px,py,TILE,TILE);ctx.fillStyle='#2a2648';ctx.fillRect(px+2,py+2,TILE-4,TILE-4);
-    if(((px/TILE)|(py/TILE))%2){ctx.fillStyle='rgba(255,255,255,.02)';ctx.fillRect(px+3,py+3,TILE-6,TILE-6)}}
+
+function drawFloor(px,py,dark,tx,ty){
+  const h=hash(tx,ty);
+  if(dark){
+    ctx.fillStyle='#0e0c18';ctx.fillRect(px,py,TILE,TILE);
+    ctx.fillStyle=h>0.5?'#13101e':'#151220';ctx.fillRect(px+2,py+2,TILE-4,TILE-4);
+  }else{
+    ctx.fillStyle='#1c1830';ctx.fillRect(px,py,TILE,TILE);
+    const base=h>0.55?'#252040':'#221e3c';
+    ctx.fillStyle=base;ctx.fillRect(px+1,py+1,TILE-2,TILE-2);
+    // subtle tile edge
+    ctx.strokeStyle='rgba(0,0,0,.2)';ctx.lineWidth=1;
+    ctx.strokeRect(px+1.5,py+1.5,TILE-3,TILE-3);
+    // tiny highlight
+    if(h>0.7){ctx.fillStyle='rgba(255,255,255,.03)';ctx.fillRect(px+4,py+4,12,10)}
+  }
 }
+
 function drawDoor(px,py,locked){
-  ctx.fillStyle='#1a1528';ctx.fillRect(px,py,TILE,TILE);
+  ctx.fillStyle='#16122a';ctx.fillRect(px,py,TILE,TILE);
   if(locked){
-    ctx.fillStyle='#5a3010';ctx.fillRect(px+6,py+2,TILE-12,TILE-4);
-    ctx.fillStyle='#73401a';ctx.fillRect(px+8,py+4,TILE-16,TILE-8);
-    ctx.strokeStyle='rgba(0,0,0,.3)';ctx.lineWidth=1;
-    for(let i=0;i<3;i++){ctx.beginPath();ctx.moveTo(px+8,py+10+i*9);ctx.lineTo(px+TILE-8,py+10+i*9);ctx.stroke()}
-    ctx.fillStyle='#e8c547';ctx.beginPath();ctx.arc(px+TILE-14,py+TILE/2,4,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#333';ctx.fillRect(px+TILE/2-4,py+TILE/2-6,8,10);
-  }else{ctx.fillStyle='#120e1e';ctx.fillRect(px+10,py,TILE-20,TILE)}
+    // wood frame
+    ctx.fillStyle='#4a2c12';ctx.fillRect(px+5,py+2,TILE-10,TILE-4);
+    ctx.fillStyle='#5e3a1a';ctx.fillRect(px+7,py+4,TILE-14,TILE-8);
+    // planks
+    ctx.strokeStyle='rgba(0,0,0,.3)';ctx.lineWidth=1.2;
+    for(let i=0;i<4;i++){ctx.beginPath();ctx.moveTo(px+7,py+9+i*8);ctx.lineTo(px+TILE-7,py+9+i*8);ctx.stroke()}
+    // metal bands
+    ctx.fillStyle='#3a3020';ctx.fillRect(px+6,py+12,TILE-12,3);ctx.fillRect(px+6,py+28,TILE-12,3);
+    // handle
+    ctx.fillStyle='#e8c040';ctx.beginPath();ctx.arc(px+TILE-13,py+TILE/2,4.5,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#2a2010';ctx.beginPath();ctx.arc(px+TILE-13,py+TILE/2,2,0,Math.PI*2);ctx.fill();
+    // lock
+    ctx.fillStyle='#2a2a2a';ctx.fillRect(px+TILE/2-5,py+TILE/2-7,10,11);
+    ctx.fillStyle='#444';ctx.fillRect(px+TILE/2-3,py+TILE/2-5,6,5);
+  }else{
+    ctx.fillStyle='#0e0c18';ctx.fillRect(px+9,py,TILE-18,TILE);
+  }
 }
+
 function drawTorch(px,py){
-  const f=Math.sin(time*.011+px)*.15+Math.sin(time*.019+py)*.1;
-  ctx.fillStyle='#3d2e20';ctx.fillRect(px-2.5,py+6,5,12);
-  const g=ctx.createRadialGradient(px,py+2,1,px,py+2,18+f*8);
-  g.addColorStop(0,'rgba(255,170,40,.5)');g.addColorStop(.5,'rgba(255,90,10,.12)');g.addColorStop(1,'rgba(255,40,0,0)');
-  ctx.fillStyle=g;ctx.beginPath();ctx.arc(px,py+2,18+f*8,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#ffb833';ctx.beginPath();ctx.moveTo(px-4,py+5);ctx.quadraticCurveTo(px-2,py-5+f*10,px,py-8+f*10);ctx.quadraticCurveTo(px+2,py-5+f*10,px+4,py+5);ctx.fill();
-  ctx.fillStyle='#fff0a0';ctx.beginPath();ctx.moveTo(px-2,py+3);ctx.quadraticCurveTo(px,py-1+f*4,px+2,py+3);ctx.fill();
+  const f=Math.sin(time*.012+px*0.1)*2.5+Math.sin(time*.02+py*0.1)*1.5;
+  // bracket
+  ctx.fillStyle='#3a2a18';ctx.fillRect(px-3,py+8,6,14);
+  ctx.fillStyle='#4a3820';ctx.fillRect(px-2,py+9,4,4);
+  // glow on wall/floor
+  const g=ctx.createRadialGradient(px,py+3,2,px,py+3,28+f);
+  g.addColorStop(0,'rgba(255,160,40,.55)');
+  g.addColorStop(0.35,'rgba(255,100,20,.18)');
+  g.addColorStop(1,'rgba(255,40,0,0)');
+  ctx.fillStyle=g;ctx.beginPath();ctx.arc(px,py+3,28+f,0,Math.PI*2);ctx.fill();
+  // flame outer
+  ctx.fillStyle='#ff9a20';
+  ctx.beginPath();
+  ctx.moveTo(px-5,py+7);
+  ctx.quadraticCurveTo(px-4,py-4+f,px,py-9+f);
+  ctx.quadraticCurveTo(px+4,py-4+f,px+5,py+7);
+  ctx.fill();
+  // flame inner
+  ctx.fillStyle='#ffe080';
+  ctx.beginPath();
+  ctx.moveTo(px-2.5,py+5);
+  ctx.quadraticCurveTo(px,py-2+f*0.5,px+2.5,py+5);
+  ctx.fill();
 }
+
 function drawRug(px,py,w,h){
-  ctx.fillStyle='#5c2434';ctx.fillRect(px,py,w,h);
-  ctx.fillStyle='#7a3448';ctx.fillRect(px+3,py+3,w-6,h-6);
-  ctx.strokeStyle='#a05060';ctx.lineWidth=2;ctx.strokeRect(px+5,py+5,w-10,h-10);
+  ctx.fillStyle='#4a1e2c';ctx.fillRect(px,py,w,h);
+  ctx.fillStyle='#6b2e40';ctx.fillRect(px+3,py+3,w-6,h-6);
+  ctx.strokeStyle='#8b4055';ctx.lineWidth=2;ctx.strokeRect(px+5,py+5,w-10,h-10);
+  // pattern
+  ctx.fillStyle='rgba(200,100,120,.15)';
+  for(let i=0;i<3;i++)for(let j=0;j<2;j++)ctx.fillRect(px+10+i*20,py+10+j*14,12,8);
 }
 function drawPillar(px,py){
-  ctx.fillStyle='#352e50';ctx.fillRect(px,py,16,36);
-  ctx.fillStyle='#453e60';ctx.fillRect(px+1,py+1,14,7);
-  ctx.fillStyle='#2a2440';ctx.fillRect(px+1,py+28,14,7);
+  ctx.fillStyle='#2e2848';ctx.fillRect(px,py,18,40);
+  ctx.fillStyle='#3e3860';ctx.fillRect(px+2,py+2,14,8);
+  ctx.fillStyle='#3a3458';ctx.fillRect(px+2,py+12,14,16);
+  ctx.fillStyle='#262040';ctx.fillRect(px+2,py+30,14,8);
+  ctx.fillStyle='rgba(255,255,255,.06)';ctx.fillRect(px+2,py+2,14,3);
 }
 function drawShelf(px,py){
-  ctx.fillStyle='#4a3020';ctx.fillRect(px,py,28,36);
-  ctx.fillStyle='#5c3c28';ctx.fillRect(px+2,py+2,24,32);
+  ctx.fillStyle='#3d2818';ctx.fillRect(px,py,30,38);
+  ctx.fillStyle='#4e3420';ctx.fillRect(px+2,py+2,26,34);
+  // shelves
   ctx.fillStyle='#2a1a10';
-  for(let i=0;i<4;i++)ctx.fillRect(px+3,py+6+i*7,22,2);
-  ctx.fillStyle='#8b4513';ctx.fillRect(px+5,py+8,6,4);ctx.fillRect(px+14,py+8,8,4);
-  ctx.fillStyle='#2e5090';ctx.fillRect(px+5,py+15,8,4);ctx.fillRect(px+16,py+15,5,4);
-  ctx.fillStyle='#6b2040';ctx.fillRect(px+5,py+22,5,4);ctx.fillRect(px+12,py+22,9,4);
+  for(let i=0;i<4;i++)ctx.fillRect(px+3,py+7+i*7,24,2);
+  // books
+  const cols=['#6b2040','#2e5090','#8b4513','#2d5a3d','#5a3080'];
+  for(let i=0;i<4;i++){
+    ctx.fillStyle=cols[i%5];ctx.fillRect(px+5,py+9+i*7,7,5);
+    ctx.fillStyle=cols[(i+2)%5];ctx.fillRect(px+14,py+9+i*7,10,5);
+  }
 }
 function drawTable(px,py){
-  ctx.fillStyle='#5a3a20';ctx.fillRect(px,py+8,36,16);
-  ctx.fillStyle='#6b4a2a';ctx.fillRect(px+2,py+10,32,12);
-  ctx.fillStyle='#4a3018';ctx.fillRect(px+3,py+24,6,10);ctx.fillRect(px+27,py+24,6,10);
+  ctx.fillStyle='#4a3018';ctx.fillRect(px,py+10,38,14);
+  ctx.fillStyle='#5c3c22';ctx.fillRect(px+2,py+12,34,10);
+  ctx.fillStyle='#3a2810';ctx.fillRect(px+3,py+24,6,10);ctx.fillRect(px+29,py+24,6,10);
+  // items on table
+  ctx.fillStyle='#c0a060';ctx.fillRect(px+10,py+8,8,5);
+  ctx.fillStyle='#8b2040';ctx.beginPath();ctx.arc(px+28,py+14,4,0,Math.PI*2);ctx.fill();
 }
 function drawBarrel(px,py){
-  ctx.fillStyle='#6b4423';ctx.beginPath();ctx.ellipse(px+10,py+14,10,12,0,0,Math.PI*2);ctx.fill();
-  ctx.strokeStyle='#3d2810';ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(px+10,py+14,10,12,0,0,Math.PI*2);ctx.stroke();
-  ctx.fillStyle='#8b5a2b';ctx.fillRect(px+2,py+10,16,3);ctx.fillRect(px+2,py+16,16,3);
+  ctx.fillStyle='#5a3818';ctx.beginPath();ctx.ellipse(px+11,py+15,11,13,0,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle='#2e1c08';ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(px+11,py+15,11,13,0,0,Math.PI*2);ctx.stroke();
+  ctx.fillStyle='#6b4423';ctx.fillRect(px+2,py+11,18,3);ctx.fillRect(px+2,py+17,18,3);
+  ctx.fillStyle='#3d2810';ctx.fillRect(px+2,py+12,18,1);ctx.fillRect(px+2,py+18,18,1);
 }
 function drawStatue(px,py){
-  ctx.fillStyle='#5a5870';ctx.fillRect(px+6,py+20,12,14);
-  ctx.fillStyle='#6a6880';ctx.beginPath();ctx.arc(px+12,py+12,9,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#4a4860';ctx.fillRect(px+4,py+18,16,5);
+  ctx.fillStyle='#4a4860';ctx.fillRect(px+5,py+22,14,14);
+  ctx.fillStyle='#5a5870';ctx.beginPath();ctx.arc(px+12,py+13,10,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#3a3850';ctx.fillRect(px+3,py+20,18,5);
+  // face hint
+  ctx.fillStyle='#2a2840';ctx.fillRect(px+8,py+11,3,3);ctx.fillRect(px+13,py+11,3,3);
 }
 function drawBanner(px,py){
-  ctx.fillStyle='#8b2040';ctx.fillRect(px,py,18,28);
-  ctx.fillStyle='#c03050';ctx.fillRect(px+2,py+2,14,24);
-  ctx.fillStyle='#e8c547';ctx.beginPath();ctx.moveTo(px+9,py+8);ctx.lineTo(px+12,py+14);ctx.lineTo(px+9,py+12);ctx.lineTo(px+6,py+14);ctx.closePath();ctx.fill();
-  ctx.fillStyle='#3d2810';ctx.fillRect(px-1,py,20,3);
+  ctx.fillStyle='#3d1808';ctx.fillRect(px-1,py,22,3);
+  ctx.fillStyle='#7a1830';ctx.fillRect(px+1,py+3,18,30);
+  ctx.fillStyle='#a02040';ctx.fillRect(px+3,py+5,14,26);
+  // crest
+  ctx.fillStyle='#e8c040';
+  ctx.beginPath();ctx.moveTo(px+10,py+10);ctx.lineTo(px+13,py+16);ctx.lineTo(px+10,py+14);ctx.lineTo(px+7,py+16);ctx.closePath();ctx.fill();
 }
 function drawChest(px,py){
-  ctx.fillStyle='#5a3818';ctx.fillRect(px,py+5,26,16);
-  ctx.fillStyle='#7a5028';ctx.fillRect(px+2,py+7,22,12);
-  ctx.fillStyle='#4a3010';ctx.fillRect(px,py+3,26,5);
-  ctx.fillStyle='#e8c547';ctx.fillRect(px+10,py+10,6,5);
+  ctx.fillStyle='#4a3010';ctx.fillRect(px,py+6,28,18);
+  ctx.fillStyle='#6b4423';ctx.fillRect(px+2,py+8,24,14);
+  ctx.fillStyle='#3a2408';ctx.fillRect(px,py+4,28,5);
+  ctx.fillStyle='#e8c040';ctx.fillRect(px+11,py+12,6,6);
+  ctx.fillStyle='#2a2a2a';ctx.fillRect(px+12,py+13,4,4);
 }
 function drawThrone(px,py){
-  ctx.fillStyle='#4a2060';ctx.fillRect(px,py+10,32,22);
-  ctx.fillStyle='#6b3080';ctx.fillRect(px+3,py+12,26,18);
-  ctx.fillStyle='#3a1850';ctx.fillRect(px+2,py,28,12);
-  ctx.fillStyle='#e8c547';ctx.fillRect(px+12,py+4,8,6);
+  ctx.fillStyle='#3a1850';ctx.fillRect(px,py+12,34,24);
+  ctx.fillStyle='#5a2880';ctx.fillRect(px+3,py+14,28,20);
+  ctx.fillStyle='#2e1040';ctx.fillRect(px+2,py,30,14);
+  ctx.fillStyle='#e8c040';ctx.fillRect(px+13,py+4,8,7);
+  // armrests
+  ctx.fillStyle='#4a2060';ctx.fillRect(px-2,py+14,6,20);ctx.fillRect(px+30,py+14,6,20);
 }
 function drawWindow(px,py){
-  ctx.fillStyle='#1a3050';ctx.fillRect(px,py,28,18);
-  ctx.fillStyle='#2a5080';ctx.fillRect(px+2,py+2,24,14);
-  ctx.strokeStyle='#3a70a0';ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(px+14,py+2);ctx.lineTo(px+14,py+16);ctx.moveTo(px+2,py+9);ctx.lineTo(px+26,py+9);ctx.stroke();
+  ctx.fillStyle='#0e1830';ctx.fillRect(px,py,30,20);
+  ctx.fillStyle='#1a3060';ctx.fillRect(px+2,py+2,26,16);
+  // glass panes
+  ctx.fillStyle='rgba(100,160,220,.25)';ctx.fillRect(px+3,py+3,11,6);ctx.fillRect(px+16,py+3,11,6);
+  ctx.fillRect(px+3,py+11,11,6);ctx.fillRect(px+16,py+11,11,6);
+  ctx.strokeStyle='#2a4880';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(px+15,py+2);ctx.lineTo(px+15,py+18);ctx.moveTo(px+2,py+10);ctx.lineTo(px+28,py+10);ctx.stroke();
 }
 
 function drawPlayer(px,py){
-  const bob=player.walking?Math.sin(player.frame)*2:0;const y=py+bob;
-  ctx.fillStyle='rgba(0,0,0,.3)';ctx.beginPath();ctx.ellipse(px+12,py+27,10,4,0,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#1a2535';ctx.fillRect(px+4,y+18,7,10);ctx.fillRect(px+13,y+18,7,10);
-  ctx.fillStyle='#3b82f6';ctx.fillRect(px+2,y+8,20,13);
-  ctx.fillStyle='#2563eb';ctx.fillRect(px+2,y+8,20,3);
-  ctx.fillStyle='#1e293b';ctx.fillRect(px+2,y+18,20,2);
-  ctx.fillStyle='#f0c9a0';ctx.beginPath();ctx.arc(px+12,y+5,8,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#3d2914';ctx.beginPath();ctx.arc(px+12,y+1.5,7.5,Math.PI*1.15,Math.PI*1.85);ctx.fill();
+  const bob=player.walking?Math.sin(player.frame)*2.2:0;const y=py+bob;
+  // shadow
+  ctx.fillStyle='rgba(0,0,0,.35)';ctx.beginPath();ctx.ellipse(px+13,py+29,11,4.5,0,0,Math.PI*2);ctx.fill();
+  // legs
+  ctx.fillStyle='#1a2435';
+  ctx.fillRect(px+5,y+20,8,11);ctx.fillRect(px+14,y+20,8,11);
+  // body
+  ctx.fillStyle='#3b82f6';ctx.fillRect(px+3,y+10,20,13);
+  ctx.fillStyle='#2563eb';ctx.fillRect(px+3,y+10,20,4);
+  // belt
+  ctx.fillStyle='#1e293b';ctx.fillRect(px+3,y+20,20,3);
+  // head
+  ctx.fillStyle='#f0c9a0';ctx.beginPath();ctx.arc(px+13,y+6,9,0,Math.PI*2);ctx.fill();
+  // hair
+  ctx.fillStyle='#3d2914';ctx.beginPath();ctx.arc(px+13,y+2,8.5,Math.PI*1.1,Math.PI*1.9);ctx.fill();
+  // eyes
   ctx.fillStyle='#1a1a1a';
-  if(player.dir==='left')ctx.fillRect(px+5,y+3,3,3);
-  else if(player.dir==='right')ctx.fillRect(px+15,y+3,3,3);
-  else if(player.dir!=='up'){ctx.fillRect(px+7,y+3,3,3);ctx.fillRect(px+14,y+3,3,3)}
+  if(player.dir==='left')ctx.fillRect(px+6,y+4,3.5,3.5);
+  else if(player.dir==='right')ctx.fillRect(px+16,y+4,3.5,3.5);
+  else if(player.dir!=='up'){ctx.fillRect(px+8,y+4,3.5,3.5);ctx.fillRect(px+15,y+4,3.5,3.5)}
 }
 
 function drawItem(it){
-  const px=it.x,py=it.y,pulse=Math.sin(time*.0055)*2;
+  const px=it.x,py=it.y,pulse=Math.sin(time*.0055)*2.5;
   if(it.id==='key'){
-    const g=ctx.createRadialGradient(px+10,py+10,1,px+10,py+10,16+pulse);
-    g.addColorStop(0,'rgba(241,196,15,.4)');g.addColorStop(1,'rgba(241,196,15,0)');
-    ctx.fillStyle=g;ctx.beginPath();ctx.arc(px+10,py+10,16+pulse,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#f1c40f';ctx.fillRect(px+4,py+7,12,4);
-    ctx.beginPath();ctx.arc(px+5,py+9,6,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#1a1a2e';ctx.beginPath();ctx.arc(px+5,py+9,2.5,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#f1c40f';ctx.fillRect(px+13,py+11,2.5,4);ctx.fillRect(px+16.5,py+11,2.5,2.5);
+    const g=ctx.createRadialGradient(px+11,py+11,1,px+11,py+11,18+pulse);
+    g.addColorStop(0,'rgba(241,196,15,.5)');g.addColorStop(1,'rgba(241,196,15,0)');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(px+11,py+11,18+pulse,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#f1c40f';ctx.fillRect(px+5,py+8,13,5);
+    ctx.beginPath();ctx.arc(px+6,py+10.5,7,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#1a1a2e';ctx.beginPath();ctx.arc(px+6,py+10.5,3,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#f1c40f';ctx.fillRect(px+15,py+13,3,5);ctx.fillRect(px+19,py+13,3,3);
   }else if(it.id==='lantern'){
-    const g=ctx.createRadialGradient(px+10,py+14,1,px+10,py+14,18+pulse);
-    g.addColorStop(0,'rgba(255,170,40,.45)');g.addColorStop(1,'rgba(255,80,0,0)');
-    ctx.fillStyle=g;ctx.beginPath();ctx.arc(px+10,py+14,18+pulse,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#94a3b8';ctx.fillRect(px+6,py+1,8,5);
-    ctx.fillStyle='#fbbf24';ctx.beginPath();ctx.arc(px+10,py+14,8,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#f59e0b';ctx.beginPath();ctx.arc(px+10,py+14,4.5,0,Math.PI*2);ctx.fill();
+    const g=ctx.createRadialGradient(px+11,py+15,1,px+11,py+15,22+pulse);
+    g.addColorStop(0,'rgba(255,170,40,.55)');g.addColorStop(1,'rgba(255,80,0,0)');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(px+11,py+15,22+pulse,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#94a3b8';ctx.fillRect(px+7,py+1,8,6);
+    ctx.fillStyle='#fbbf24';ctx.beginPath();ctx.arc(px+11,py+16,9,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#f59e0b';ctx.beginPath();ctx.arc(px+11,py+16,5,0,Math.PI*2);ctx.fill();
   }else if(it.id==='amulet'){
-    const g=ctx.createRadialGradient(px+12,py+12,1,px+12,py+12,22+pulse);
-    g.addColorStop(0,'rgba(168,85,247,.45)');g.addColorStop(.6,'rgba(168,85,247,.12)');g.addColorStop(1,'rgba(168,85,247,0)');
-    ctx.fillStyle=g;ctx.beginPath();ctx.arc(px+12,py+12,22+pulse,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#a855f7';ctx.beginPath();ctx.arc(px+12,py+12,11,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#ef4444';ctx.beginPath();ctx.arc(px+12,py+12,4.5,0,Math.PI*2);ctx.fill();
-    ctx.strokeStyle='#fbbf24';ctx.lineWidth=2;ctx.beginPath();ctx.arc(px+12,py+12,14,0,Math.PI*2);ctx.stroke();
+    const g=ctx.createRadialGradient(px+13,py+13,1,px+13,py+13,26+pulse);
+    g.addColorStop(0,'rgba(168,85,247,.55)');g.addColorStop(.5,'rgba(168,85,247,.15)');g.addColorStop(1,'rgba(168,85,247,0)');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(px+13,py+13,26+pulse,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#a855f7';ctx.beginPath();ctx.arc(px+13,py+13,12,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#ef4444';ctx.beginPath();ctx.arc(px+13,py+13,5,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='#fbbf24';ctx.lineWidth=2.5;ctx.beginPath();ctx.arc(px+13,py+13,15,0,Math.PI*2);ctx.stroke();
   }
 }
 
@@ -365,13 +446,28 @@ function draw(){
   const camY=player.y-canvas.height/2+player.h/2;
   ctx.save();ctx.translate(-Math.floor(camX),-Math.floor(camY));
 
+  // map
   for(let y=0;y<mapH;y++)for(let x=0;x<mapW;x++){
     const t=map[y][x],px=x*TILE,py=y*TILE;
-    if(t===1)drawWall(px,py);
+    if(t===1)drawWall(px,py,x,y);
     else if(t===2)drawDoor(px,py,true);
     else if(t===3)drawDoor(px,py,false);
-    else drawFloor(px,py,t===4);
+    else drawFloor(px,py,t===4,x,y);
   }
+
+  // floor light from torches (soft circles)
+  const lights=getTorchLights();
+  ctx.globalCompositeOperation='lighter';
+  for(const L of lights){
+    const g=ctx.createRadialGradient(L.x,L.y+20,5,L.x,L.y+20,70);
+    g.addColorStop(0,'rgba(255,140,40,.12)');
+    g.addColorStop(0.5,'rgba(255,100,20,.04)');
+    g.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(L.x,L.y+20,70,0,Math.PI*2);ctx.fill();
+  }
+  ctx.globalCompositeOperation='source-over';
+
+  // props
   for(const p of props){
     if(p.t==='torch')drawTorch(p.x,p.y);
     else if(p.t==='rug')drawRug(p.x,p.y,p.w,p.h);
@@ -385,13 +481,14 @@ function draw(){
     else if(p.t==='throne')drawThrone(p.x,p.y);
     else if(p.t==='window')drawWindow(p.x,p.y);
   }
+
   items.forEach(it=>{if(!it.taken)drawItem(it)});
   for(const p of particles){ctx.globalAlpha=Math.max(0,p.life);ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.size*p.life,0,Math.PI*2);ctx.fill()}
   ctx.globalAlpha=1;
   drawPlayer(player.x,player.y);
   ctx.restore();
 
-  if(near&&gameStarted){ctx.fillStyle='rgba(251,191,36,.92)';ctx.font='bold 12px sans-serif';ctx.textAlign='center';ctx.fillText('●  Naciśnij AKCJA  ●',canvas.width/2,canvas.height-10)}
+  if(near&&gameStarted){ctx.fillStyle='rgba(251,191,36,.95)';ctx.font='bold 12px sans-serif';ctx.textAlign='center';ctx.fillText('●  Naciśnij AKCJA  ●',canvas.width/2,canvas.height-10)}
 }
 
 let last=performance.now();
